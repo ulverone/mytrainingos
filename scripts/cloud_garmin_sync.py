@@ -103,9 +103,13 @@ def telegram_mfa_prompt():
 
 
 def sync_garmin():
-    """Main sync function."""
+    """Main sync function with historical data support."""
     import garth
     from garminconnect import Garmin
+    from datetime import timedelta
+    
+    # Configuration
+    HISTORICAL_MONTHS = int(os.environ.get('HISTORICAL_MONTHS', '12'))
     
     print("🔄 Starting Garmin Sync...")
     print(f"📧 Email: {GARMIN_EMAIL}")
@@ -129,26 +133,86 @@ def sync_garmin():
         client = Garmin(GARMIN_EMAIL, GARMIN_PASSWORD)
         client.garth = garth.client
         
-        # Get recent activities
-        print("📋 Fetching activities...")
-        activities = client.get_activities(0, 20)
-        print(f"   Found {len(activities)} recent activities")
-        
-        # Download new activities
+        # Setup data directory
         data_dir = Path("data/activities")
         data_dir.mkdir(parents=True, exist_ok=True)
         
+        # Check if we need historical sync
+        existing_files = list(data_dir.glob("*.zip"))
+        is_first_run = len(existing_files) < 10
+        
+        if is_first_run:
+            print(f"\n📆 HISTORICAL SYNC: Downloading last {HISTORICAL_MONTHS} months...")
+            send_telegram(f"📆 <b>Sync Storico Attivato</b>\n\nScaricando tutte le attività degli ultimi {HISTORICAL_MONTHS} mesi...\n\n⏱️ Questo potrebbe richiedere alcuni minuti.")
+            
+            # Calculate date range
+            end_date = datetime.now()
+            start_date = end_date - timedelta(days=HISTORICAL_MONTHS * 30)
+            
+            # Fetch ALL activities in batches
+            all_activities = []
+            batch_size = 100
+            start_idx = 0
+            
+            while True:
+                print(f"   Fetching batch {start_idx//batch_size + 1}...")
+                batch = client.get_activities(start_idx, batch_size)
+                if not batch:
+                    break
+                
+                all_activities.extend(batch)
+                
+                # Check if oldest activity is older than our target
+                oldest = batch[-1]
+                oldest_date_str = oldest.get("startTimeLocal", "")
+                if oldest_date_str:
+                    oldest_date = datetime.fromisoformat(oldest_date_str.replace("Z", ""))
+                    if oldest_date < start_date:
+                        print(f"   Reached {oldest_date.strftime('%Y-%m-%d')} - stopping")
+                        break
+                
+                start_idx += batch_size
+                time.sleep(0.5)  # Rate limiting
+            
+            # Filter to only activities within date range
+            activities = []
+            for act in all_activities:
+                date_str = act.get("startTimeLocal", "")
+                if date_str:
+                    try:
+                        act_date = datetime.fromisoformat(date_str.replace("Z", ""))
+                        if act_date >= start_date:
+                            activities.append(act)
+                    except:
+                        activities.append(act)
+                else:
+                    activities.append(act)
+            
+            print(f"📋 Found {len(activities)} activities in last {HISTORICAL_MONTHS} months")
+        else:
+            # Normal daily sync - just get recent
+            print("📋 Daily sync: Fetching recent activities...")
+            activities = client.get_activities(0, 30)
+            print(f"   Found {len(activities)} recent activities")
+        
+        # Download activities
         downloaded = 0
-        for act in activities:
+        skipped = 0
+        errors = 0
+        
+        for i, act in enumerate(activities):
             activity_id = act.get("activityId")
             if not activity_id:
                 continue
             
             fit_path = data_dir / f"{activity_id}.zip"
             if fit_path.exists():
+                skipped += 1
                 continue
             
-            print(f"   📥 Downloading {activity_id}...")
+            activity_name = act.get("activityName", "Unknown")[:30]
+            print(f"   📥 [{i+1}/{len(activities)}] {activity_name}...")
+            
             try:
                 zip_data = client.download_activity(
                     activity_id, 
@@ -158,11 +222,24 @@ def sync_garmin():
                     with open(fit_path, "wb") as f:
                         f.write(zip_data)
                     downloaded += 1
+                time.sleep(0.3)  # Rate limiting
             except Exception as e:
                 print(f"   ⚠️ Error: {e}")
+                errors += 1
         
-        print(f"\n✅ Sync complete! Downloaded {downloaded} new activities.")
-        send_telegram(f"✅ <b>Garmin Sync Complete!</b>\n\n📥 {downloaded} nuove attività scaricate")
+        # Summary
+        total_files = len(list(data_dir.glob("*.zip")))
+        summary = f"""✅ <b>Garmin Sync Complete!</b>
+
+📥 Scaricate: {downloaded} nuove attività
+⏭️ Saltate: {skipped} (già presenti)
+📁 Totale in archivio: {total_files} attività"""
+        
+        if errors > 0:
+            summary += f"\n⚠️ Errori: {errors}"
+        
+        print(f"\n{summary.replace('<b>', '').replace('</b>', '')}")
+        send_telegram(summary)
         return True
         
     except Exception as e:
