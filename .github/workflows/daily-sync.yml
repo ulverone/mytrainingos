@@ -1,0 +1,68 @@
+name: Daily Sync
+
+on:
+  schedule:
+    # Runs at 19:00 UTC = 20:00 CET (ora italiana)
+    - cron: "0 19 * * *"
+  workflow_dispatch: # Allow manual trigger
+
+env:
+  TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+  TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+  GARMIN_EMAIL: ${{ secrets.GARMIN_EMAIL }}
+  GARMIN_PASSWORD: ${{ secrets.GARMIN_PASSWORD }}
+  OURA_ACCESS_TOKEN: ${{ secrets.OURA_ACCESS_TOKEN }}
+  OURA_REFRESH_TOKEN: ${{ secrets.OURA_REFRESH_TOKEN }}
+  OURA_CLIENT_ID: ${{ secrets.OURA_CLIENT_ID }}
+  OURA_CLIENT_SECRET: ${{ secrets.OURA_CLIENT_SECRET }}
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          pip install requests garth garminconnect pandas openpyxl fitparse
+
+      - name: Sync Oura Data
+        run: |
+          python scripts/cloud_oura_sync.py
+        continue-on-error: true
+
+      - name: Sync Garmin Data
+        run: |
+          python scripts/cloud_garmin_sync.py
+        timeout-minutes: 10 # Max 10 minutes for MFA
+        continue-on-error: true
+
+      - name: Process FIT files
+        run: |
+          python scripts/process_fit_files.py || echo "No new FIT files to process"
+        continue-on-error: true
+
+      - name: Commit and push changes
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add -A
+          git diff --staged --quiet || git commit -m "🔄 Daily sync $(date +'%Y-%m-%d')"
+          git push
+        continue-on-error: true
+
+      - name: Send completion notification
+        if: always()
+        run: |
+          curl -s -X POST "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" \
+            -d "chat_id=${TELEGRAM_CHAT_ID}" \
+            -d "text=📊 Daily sync workflow completed. Check the dashboard!"

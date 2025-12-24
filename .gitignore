@@ -1,0 +1,23 @@
+# Secrets - DO NOT COMMIT
+data/oura_config.json
+*.log
+
+# Python
+__pycache__/
+*.pyc
+.env
+
+# macOS
+.DS_Store
+
+# IDE
+.idea/
+.vscode/
+
+# Downloaded data (will be generated)
+data/fit_files/
+data/activities/
+logs/
+
+# Garth cache
+.garth/

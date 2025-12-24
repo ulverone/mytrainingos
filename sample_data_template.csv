@@ -1,0 +1,7 @@
+ActivityID,Attivita_Data Inizio,Attivita_Tipo Sport,Attivita_Durata Totale (sec),Attivita_Potenza Normalizzata (W),Attivita_FC Media (bpm),Attivita_Potenza Media (W),Attivita_Distanza (km)
+123456,2024-01-15 08:00:00,Cycling,3600,250,145,240,40.5
+123456,2024-01-15 08:00:00,Cycling,3600,250,145,240,40.5
+123457,2024-01-16 07:30:00,Running,2700,,155,,12.3
+123458,2024-01-18 17:00:00,Cycling,5400,260,150,255,65.2
+123459,2024-01-20 09:00:00,Swimming,3000,,,,,2.5
+123460,2024-01-22 08:00:00,Cycling,4200,245,148,238,52.3

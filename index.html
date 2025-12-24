@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyTrainingOS - Performance Management</title>
+    <meta name="description"
+        content="Alternativa a TrainingPeaks per gestione allenamenti triathlon con PMC, TSS, CTL, ATL, TSB">
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div id="app">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <span class="logo-icon">🏊‍♂️🚴‍♂️🏃‍♂️</span>
+                <h1>MyTrainingOS</h1>
+            </div>
+            <nav class="nav-menu">
+                <a href="#" class="nav-item active" data-view="dashboard">
+                    <span class="nav-icon">📊</span>
+                    Dashboard
+                </a>
+                <a href="#" class="nav-item" data-view="calendar">
+                    <span class="nav-icon">📅</span>
+                    Calendario
+                </a>
+                <a href="#" class="nav-item" data-view="activities">
+                    <span class="nav-icon">🏋️</span>
+                    Attività
+                </a>
+                <a href="#" class="nav-item" data-view="pmc">
+                    <span class="nav-icon">📈</span>
+                    PMC Chart
+                </a>
+                <a href="#" class="nav-item" data-view="settings">
+                    <span class="nav-icon">⚙️</span>
+                    Impostazioni
+                </a>
+            </nav>
+            <div class="sidebar-footer">
+                <button id="importBtn" class="btn-import">
+                    <span>📂</span> Importa FIT
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Dashboard View -->
+            <section id="dashboard-view" class="view active">
+                <header class="view-header">
+                    <h2>Dashboard</h2>
+                    <div class="date-display" id="currentDate"></div>
+                </header>
+
+                <!-- PMC Cards -->
+                <div class="pmc-cards">
+                    <div class="pmc-card ctl">
+                        <div class="card-label">CTL (Fitness)</div>
+                        <div class="card-value" id="ctl-value">--</div>
+                        <div class="card-trend" id="ctl-trend"></div>
+                    </div>
+                    <div class="pmc-card atl">
+                        <div class="card-label">ATL (Fatica)</div>
+                        <div class="card-value" id="atl-value">--</div>
+                        <div class="card-trend" id="atl-trend"></div>
+                    </div>
+                    <div class="pmc-card tsb">
+                        <div class="card-label">TSB (Forma)</div>
+                        <div class="card-value" id="tsb-value">--</div>
+                        <div class="card-status" id="tsb-status"></div>
+                    </div>
+                    <div class="pmc-card ramp">
+                        <div class="card-label">Ramp Rate</div>
+                        <div class="card-value" id="ramp-value">--</div>
+                        <div class="card-unit">CTL/sett</div>
+                    </div>
+                </div>
+
+                <!-- Oura Ring Section - Expanded -->
+                <div class="oura-section" id="oura-section" style="display: none;">
+                    <!-- Notification Banner -->
+                    <div class="oura-alerts" id="oura-alerts" style="display: none;">
+                        <span class="alert-icon">⚠️</span>
+                        <span class="alert-text" id="alert-text">Alcuni parametri sono fuori range</span>
+                        <button class="alert-dismiss" id="alert-dismiss">✕</button>
+                    </div>
+
+                    <h3>💍 Oura Ring - Recupero <span class="oura-date" id="oura-date"></span></h3>
+
+                    <!-- Main Scores -->
+                    <div class="oura-grid">
+                        <div class="oura-metric" id="metric-sleep">
+                            <div class="metric-header">
+                                <span class="metric-icon">🛏️</span>
+                                <span class="metric-label">Sleep Score</span>
+                                <span class="metric-trend" id="trend-sleep"></span>
+                            </div>
+                            <div class="metric-value" id="oura-sleep">--</div>
+                            <div class="metric-range">Ottimo: 85+</div>
+                            <svg class="sparkline" id="spark-sleep" viewBox="0 0 100 30"
+                                preserveAspectRatio="none"></svg>
+                            <div class="metric-bar">
+                                <div class="metric-fill" id="fill-sleep"></div>
+                            </div>
+                        </div>
+
+                        <div class="oura-metric" id="metric-readiness">
+                            <div class="metric-header">
+                                <span class="metric-icon">⚡</span>
+                                <span class="metric-label">Readiness</span>
+                                <span class="metric-trend" id="trend-readiness"></span>
+                            </div>
+                            <div class="metric-value" id="oura-readiness">--</div>
+                            <div class="metric-range">Ottimo: 85+</div>
+                            <svg class="sparkline" id="spark-readiness" viewBox="0 0 100 30"
+                                preserveAspectRatio="none"></svg>
+                            <div class="metric-bar">
+                                <div class="metric-fill" id="fill-readiness"></div>
+                            </div>
+                        </div>
+
+                        <div class="oura-metric" id="metric-hrv">
+                            <div class="metric-header">
+                                <span class="metric-icon">❤️</span>
+                                <span class="metric-label">HRV (RMSSD)</span>
+                                <span class="metric-trend" id="trend-hrv"></span>
+                            </div>
+                            <div class="metric-value" id="oura-hrv">--</div>
+                            <div class="metric-range">Normale: 20-70 ms</div>
+                            <svg class="sparkline" id="spark-hrv" viewBox="0 0 100 30" preserveAspectRatio="none"></svg>
+                            <div class="metric-bar">
+                                <div class="metric-fill" id="fill-hrv"></div>
+                            </div>
+                        </div>
+
+                        <div class="oura-metric" id="metric-recovery">
+                            <div class="metric-header">
+                                <span class="metric-icon">🔋</span>
+                                <span class="metric-label">Recovery Index</span>
+                                <span class="metric-trend" id="trend-recovery"></span>
+                            </div>
+                            <div class="metric-value" id="oura-recovery">--</div>
+                            <div class="metric-range">Ottimo: 80+</div>
+                            <svg class="sparkline" id="spark-recovery" viewBox="0 0 100 30"
+                                preserveAspectRatio="none"></svg>
+                            <div class="metric-bar">
+                                <div class="metric-fill" id="fill-recovery"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    </div>
+
+    <!-- Secondary Metrics -->
+    <div class="oura-secondary">
+        <div class="oura-stat" id="stat-lowesthr">
+            <span class="stat-icon">💓</span>
+            <span class="stat-label">FC Minima</span>
+            <span class="stat-value" id="oura-lowesthr">--</span>
+            <span class="stat-unit">bpm</span>
+            <span class="stat-range">(40-60)</span>
+        </div>
+        <div class="oura-stat" id="stat-restinghr">
+            <span class="stat-icon">💗</span>
+            <span class="stat-label">Resting HR Score</span>
+            <span class="stat-value" id="oura-restinghr">--</span>
+            <span class="stat-range">(70+)</span>
+        </div>
+        <div class="oura-stat" id="stat-hrvbalance">
+            <span class="stat-icon">📊</span>
+            <span class="stat-label">HRV Balance</span>
+            <span class="stat-value" id="oura-hrvbalance">--</span>
+            <span class="stat-range">(70+)</span>
+        </div>
+        <div class="oura-stat" id="stat-efficiency">
+            <span class="stat-icon">📈</span>
+            <span class="stat-label">Efficienza Sonno</span>
+            <span class="stat-value" id="oura-efficiency">--</span>
+            <span class="stat-unit">%</span>
+            <span class="stat-range">(85+)</span>
+        </div>
+        <div class="oura-stat" id="stat-deepsleep">
+            <span class="stat-icon">🌙</span>
+            <span class="stat-label">Deep Sleep Score</span>
+            <span class="stat-value" id="oura-deepsleep">--</span>
+            <span class="stat-range">(70+)</span>
+        </div>
+        <div class="oura-stat" id="stat-totalsleep">
+            <span class="stat-icon">⏰</span>
+            <span class="stat-label">Total Sleep Score</span>
+            <span class="stat-value" id="oura-totalsleep">--</span>
+            <span class="stat-range">(70+)</span>
+        </div>
+    </div>
+    </div>
+
+    <!-- Weekly Summary -->
+    <div class="weekly-section">
+        <h3>Settimana Corrente</h3>
+        <div class="weekly-stats">
+            <div class="weekly-stat">
+                <span class="stat-label">TSS Totale</span>
+                <span class="stat-value" id="weekly-tss">--</span>
+            </div>
+            <div class="weekly-stat">
+                <span class="stat-label">Allenamenti</span>
+                <span class="stat-value" id="weekly-count">--</span>
+            </div>
+            <div class="weekly-stat">
+                <span class="stat-label">Ore</span>
+                <span class="stat-value" id="weekly-hours">--</span>
+            </div>
+            <div class="weekly-stat">
+                <span class="stat-label">Distanza</span>
+                <span class="stat-value" id="weekly-distance">--</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sport Breakdown -->
+    <div class="sport-breakdown">
+        <h3>TSS per Sport</h3>
+        <div class="sport-bars">
+            <div class="sport-bar swim">
+                <div class="sport-icon">🏊‍♂️</div>
+                <div class="sport-progress">
+                    <div class="progress-fill" id="swim-progress"></div>
+                </div>
+                <div class="sport-tss" id="swim-tss">--</div>
+            </div>
+            <div class="sport-bar bike">
+                <div class="sport-icon">🚴‍♂️</div>
+                <div class="sport-progress">
+                    <div class="progress-fill" id="bike-progress"></div>
+                </div>
+                <div class="sport-tss" id="bike-tss">--</div>
+            </div>
+            <div class="sport-bar run">
+                <div class="sport-icon">🏃‍♂️</div>
+                <div class="sport-progress">
+                    <div class="progress-fill" id="run-progress"></div>
+                </div>
+                <div class="sport-tss" id="run-tss">--</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Activities -->
+    <div class="recent-activities">
+        <h3>Attività Recenti</h3>
+        <div class="activities-list" id="recent-activities-list">
+            <p class="empty-state">Importa file FIT per visualizzare le attività</p>
+        </div>
+    </div>
+    </section>
+
+    <!-- Calendar View -->
+    <section id="calendar-view" class="view">
+        <header class="view-header">
+            <h2>Calendario</h2>
+            <div class="calendar-nav">
+                <button id="prevMonth" class="btn-nav">◀</button>
+                <span id="currentMonth"></span>
+                <button id="nextMonth" class="btn-nav">▶</button>
+            </div>
+        </header>
+        <div class="calendar-container">
+            <div class="calendar-header">
+                <span>Lun</span>
+                <span>Mar</span>
+                <span>Mer</span>
+                <span>Gio</span>
+                <span>Ven</span>
+                <span>Sab</span>
+                <span>Dom</span>
+                <span class="week-tss-header">TSS</span>
+            </div>
+            <div class="calendar-grid" id="calendar-grid"></div>
+        </div>
+        <div class="weekly-summary" id="weekly-summary"></div>
+    </section>
+
+    <!-- Activities View -->
+    <section id="activities-view" class="view">
+        <header class="view-header">
+            <h2>Tutte le Attività</h2>
+            <div class="filters">
+                <select id="sportFilter">
+                    <option value="all">Tutti gli sport</option>
+                    <option value="cycling">🚴‍♂️ Ciclismo</option>
+                    <option value="running">🏃‍♂️ Corsa</option>
+                    <option value="swimming">🏊‍♂️ Nuoto</option>
+                </select>
+            </div>
+        </header>
+        <div class="activities-table-container">
+            <table class="activities-table">
+                <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Sport</th>
+                        <th>Durata</th>
+                        <th>Distanza</th>
+                        <th>TSS</th>
+                        <th>IF</th>
+                        <th>Dettagli</th>
+                    </tr>
+                </thead>
+                <tbody id="activities-tbody"></tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- PMC Chart View -->
+    <section id="pmc-view" class="view">
+        <header class="view-header">
+            <h2>Performance Management Chart</h2>
+            <div class="chart-controls">
+                <button class="btn-range active" data-range="30">30g</button>
+                <button class="btn-range" data-range="90">90g</button>
+                <button class="btn-range" data-range="180">6m</button>
+                <button class="btn-range" data-range="365">1a</button>
+            </div>
+        </header>
+        <div class="chart-container">
+            <canvas id="pmcChart"></canvas>
+        </div>
+        <div class="chart-legend">
+            <span class="legend-item ctl">● CTL (Fitness)</span>
+            <span class="legend-item atl">● ATL (Fatica)</span>
+            <span class="legend-item tsb">● TSB (Forma)</span>
+            <span class="legend-item tss">■ TSS</span>
+        </div>
+    </section>
+
+    <!-- Settings View -->
+    <section id="settings-view" class="view">
+        <header class="view-header">
+            <h2>Impostazioni</h2>
+        </header>
+        <div class="settings-container">
+            <div class="settings-section">
+                <h3>🚴‍♂️ Ciclismo</h3>
+                <div class="setting-row">
+                    <label>FTP (Functional Threshold Power)</label>
+                    <div class="input-group">
+                        <input type="number" id="ftp" value="300">
+                        <span class="unit">W</span>
+                    </div>
+                </div>
+            </div>
+            <div class="settings-section">
+                <h3>🏃‍♂️ Corsa</h3>
+                <div class="setting-row">
+                    <label>Threshold Pace</label>
+                    <div class="input-group">
+                        <input type="text" id="runThreshold" value="4:16" placeholder="mm:ss">
+                        <span class="unit">/km</span>
+                    </div>
+                </div>
+            </div>
+            <div class="settings-section">
+                <h3>🏊‍♂️ Nuoto</h3>
+                <div class="setting-row">
+                    <label>Threshold Pace (100m)</label>
+                    <div class="input-group">
+                        <input type="text" id="swimThreshold" value="1:40" placeholder="mm:ss">
+                        <span class="unit">/100m</span>
+                    </div>
+                </div>
+            </div>
+            <div class="settings-section">
+                <h3>📂 Dati</h3>
+                <div class="setting-row">
+                    <label>Attività importate</label>
+                    <span id="activityCount">0</span>
+                </div>
+                <div class="setting-actions">
+                    <button id="exportData" class="btn-secondary">Esporta Dati</button>
+                    <button id="clearData" class="btn-danger">Cancella Tutto</button>
+                </div>
+            </div>
+            <div class="settings-buttons">
+                <button id="saveSettings" class="btn-primary">💾 Salva Impostazioni</button>
+                <button id="recalculateTSS" class="btn-secondary">🔄 Ricalcola TSS (42g)</button>
+            </div>
+        </div>
+    </section>
+    </main>
+    </div>
+
+    <!-- Activity Detail Modal -->
+    <div id="activityModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close">&times;</button>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <!-- Import Modal -->
+    <div id="importModal" class="modal">
+        <div class="modal-content import-modal">
+            <button class="modal-close">&times;</button>
+            <h2>📂 Importa File FIT</h2>
+            <div class="import-dropzone" id="dropzone">
+                <div class="dropzone-content">
+                    <span class="dropzone-icon">📁</span>
+                    <p>Trascina i file .fit qui</p>
+                    <p class="dropzone-or">oppure</p>
+                    <input type="file" id="fileInput" multiple accept=".fit" hidden>
+                    <button id="browseBtn" class="btn-primary">Sfoglia File</button>
+                </div>
+            </div>
+            <div class="import-progress" id="importProgress">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="importProgressFill"></div>
+                </div>
+                <p id="importStatus"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/lib/fit-parser.js"></script>
+    <script src="js/lib/tss-calculator.js"></script>
+    <script src="js/lib/pmc-engine.js"></script>
+    <script src="js/lib/database.js"></script>
+    <script src="js/lib/chart.js"></script>
+    <script src="js/app.js"></script>
+</body>
+
+</html>
