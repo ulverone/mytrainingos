@@ -14,9 +14,9 @@ __pycache__/
 .idea/
 .vscode/
 
-# Downloaded data (regenerated each run, IDs tracked in workouts.json)
+# Downloaded data (fit_files is temp, activities ARE committed for future use)
 data/fit_files/
-data/activities/
+# data/activities/ - KEPT IN REPO for future data extraction
 logs/
 
 # Garth cache
