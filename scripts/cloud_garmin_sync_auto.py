@@ -68,11 +68,24 @@ def read_mfa_from_email(timeout=180):
         mail.login(EMAIL_ADDRESS, EMAIL_PASSWORD)
         mail.select('INBOX')
         
+        # FIRST: Delete ALL old Garmin MFA emails to avoid picking up old codes
+        print("🧹 Cleaning old Garmin MFA emails...")
+        try:
+            status, messages = mail.search(None, '(FROM "garmin")')
+            if status == 'OK' and messages[0]:
+                old_ids = messages[0].split()
+                for eid in old_ids:
+                    mail.store(eid, '+FLAGS', '\\Deleted')
+                mail.expunge()
+                print(f"   Deleted {len(old_ids)} old Garmin emails")
+        except Exception as e:
+            print(f"   Could not clean old emails: {e}")
+        
         start_time = time.time()
         check_interval = 10  # Check every 10 seconds
         
-        print(f"⏳ Waiting for MFA email (timeout: {timeout}s)...")
-        send_telegram("📧 <b>Garmin Sync Started</b>\n\nWaiting for MFA email from Garmin...")
+        print(f"⏳ Waiting for NEW MFA email (timeout: {timeout}s)...")
+        send_telegram("📧 <b>Garmin Sync Started</b>\n\nWaiting for NEW MFA email from Garmin...")
         
         while time.time() - start_time < timeout:
             # Search for UNSEEN emails from Garmin (correct sender!)
@@ -122,8 +135,8 @@ def read_mfa_from_email(timeout=180):
                             else:
                                 subject = decoded[0]
                         
-                        # Check if it's a passcode email
-                        if 'passcode' not in subject.lower() and 'security' not in subject.lower() and 'code' not in subject.lower():
+                        # Check if it's a passcode email (supports Italian and English)
+                        if 'passcode' not in subject.lower() and 'sicurezza' not in subject.lower() and 'security' not in subject.lower() and 'code' not in subject.lower():
                             continue
                         
                         # Get email body
