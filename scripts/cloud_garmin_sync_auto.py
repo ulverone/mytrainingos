@@ -100,13 +100,19 @@ def read_mfa_from_email(timeout=180):
             ]
             
             email_ids = []
+            # Since we deleted all old Garmin emails, any email from the Garmin sender MUST be new
+            # Use simple search: if we find ANY email from Garmin security, it's the one we want
             for criteria in search_strategies:
                 try:
+                    # Re-select inbox before each search to ensure fresh view
+                    mail.select('inbox')
                     status, messages = mail.search(None, criteria)
                     if status == 'OK' and messages[0]:
                         email_ids = messages[0].split()
-                        print(f"   Found {len(email_ids)} emails with: {criteria}")
+                        print(f"   ✓ Found {len(email_ids)} emails with: {criteria}")
                         break
+                    else:
+                        print(f"   No match for: {criteria}")
                 except Exception as e:
                     print(f"   Search failed for {criteria}: {e}")
                     continue
