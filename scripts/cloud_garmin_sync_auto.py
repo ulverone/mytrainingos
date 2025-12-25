@@ -224,7 +224,6 @@ def read_mfa_from_email(timeout=180):
 def sync_garmin():
     """Main sync function with automatic email MFA."""
     import garth
-    from garminconnect import Garmin
     from datetime import timedelta
     
     # Configuration
@@ -266,9 +265,8 @@ def sync_garmin():
         # Save session for future use
         garth.save("~/.garth")
         
-        # Create Garmin client
-        client = Garmin(GARMIN_EMAIL, GARMIN_PASSWORD)
-        client.garth = garth.client
+        # Use garth directly for API calls (no need for Garmin wrapper which causes serialization issues)
+        print("📡 Fetching activities from Garmin Connect...")
         
         # Setup data directory
         data_dir = Path("data/activities")
@@ -297,38 +295,48 @@ def sync_garmin():
             print(f"\n📆 HISTORICAL SYNC: Downloading last {HISTORICAL_MONTHS} months...")
             send_telegram(f"📆 <b>Sync Storico</b>\n\nScaricando {HISTORICAL_MONTHS} mesi di attività...")
             
-            end_date = datetime.now()
-            start_date = end_date - timedelta(days=HISTORICAL_MONTHS * 30)
-            
+            # Fetch multiple pages of activities
             all_activities = []
-            batch_size = 100
             start_idx = 0
+            batch_size = 100
+            max_days_back = HISTORICAL_MONTHS * 30
             
             while True:
                 print(f"   Fetching batch {start_idx//batch_size + 1}...")
-                batch = client.get_activities(start_idx, batch_size)
-                if not batch:
+                # Use garth.connectapi directly
+                activities_response = garth.connectapi(
+                    f"/activitylist-service/activities/search/activities",
+                    params={"start": start_idx, "limit": batch_size}
+                )
+                if not activities_response:
                     break
                 
-                all_activities.extend(batch)
+                all_activities.extend(activities_response)
                 
-                oldest = batch[-1]
-                oldest_date_str = oldest.get("startTimeLocal", "")
-                if oldest_date_str:
-                    oldest_date = datetime.fromisoformat(oldest_date_str.replace("Z", ""))
-                    if oldest_date < start_date:
-                        print(f"   Reached {oldest_date.strftime('%Y-%m-%d')} - stopping")
-                        break
+                # Check if we've gone back far enough
+                if activities_response:
+                    oldest = activities_response[-1]
+                    oldest_date_str = oldest.get("startTimeLocal", "")
+                    if oldest_date_str:
+                        oldest_date = datetime.fromisoformat(oldest_date_str.replace("Z", ""))
+                        days_back = (datetime.now() - oldest_date).days
+                        if days_back >= max_days_back:
+                            print(f"   Reached {oldest_date.strftime('%Y-%m-%d')} ({days_back} days back) - stopping")
+                            break
                 
                 start_idx += batch_size
                 time.sleep(0.5)
             
-            activities = [a for a in all_activities if a.get("startTimeLocal")]
+            activities = all_activities
             print(f"📋 Found {len(activities)} activities in Garmin")
         else:
             print("📋 Daily sync: Fetching recent activities...")
             send_telegram("📋 <b>Daily Sync</b>\n\nChecking for new activities...")
-            activities = client.get_activities(0, 30)
+            # Fetch recent activities
+            activities = garth.connectapi(
+                "/activitylist-service/activities/search/activities",
+                params={"start": 0, "limit": 30}
+            ) or []
             print(f"   Found {len(activities)} recent activities")
         
         # Download only activities NOT already processed
@@ -352,14 +360,17 @@ def sync_garmin():
             print(f"   📥 [{i+1}/{len(activities)}] {activity_name}...")
             
             try:
-                zip_data = client.download_activity(
-                    activity_id, 
-                    dl_fmt=client.ActivityDownloadFormat.ORIGINAL
-                )
-                if zip_data:
+                # Download using garth - direct URL to get original FIT file
+                download_url = f"/download-service/files/activity/{activity_id}"
+                response = garth.client.get("connectapi", download_url)
+                if response and response.status_code == 200:
+                    zip_data = response.content
                     with open(fit_path, "wb") as f:
                         f.write(zip_data)
                     downloaded += 1
+                else:
+                    print(f"   ⚠️ Download returned status {response.status_code if response else 'None'}")
+                    errors += 1
                 time.sleep(0.3)
             except Exception as e:
                 print(f"   ⚠️ Error: {e}")
