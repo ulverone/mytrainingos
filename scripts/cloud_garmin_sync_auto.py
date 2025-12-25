@@ -241,11 +241,11 @@ def sync_garmin():
     
     try:
         # Login with automatic email MFA using return_on_mfa approach
-        # Step 1: Start login, this will trigger Garmin to SEND the MFA email
+        # Per garth docs: login() returns ("needs_mfa", state) if MFA required, or (oauth1, oauth2) if not
         print("🔐 Logging in to Garmin Connect...")
-        result = garth.login(GARMIN_EMAIL, GARMIN_PASSWORD, return_on_mfa=True)
+        result1, result2 = garth.login(GARMIN_EMAIL, GARMIN_PASSWORD, return_on_mfa=True)
         
-        if result is None:
+        if result1 == "needs_mfa":
             # MFA is required - Garmin has now SENT the email
             print("📧 MFA required - waiting for email from Garmin...")
             
@@ -255,11 +255,12 @@ def sync_garmin():
             if not mfa_code:
                 raise Exception("Failed to get MFA code from email")
             
-            # Step 3: Resume login with the MFA code
+            # Step 3: Resume login with the state from login() AND the MFA code
             print(f"🔑 Submitting MFA code...")
-            garth.resume_login(mfa_code)
+            garth.resume_login(result2, mfa_code)
             print("✅ Login successful with MFA!")
         else:
+            # Login succeeded without MFA - result1, result2 are oauth1, oauth2 tokens
             print("✅ Login successful (no MFA required)!")
         
         # Skip session save - not needed in ephemeral GitHub Actions environment
