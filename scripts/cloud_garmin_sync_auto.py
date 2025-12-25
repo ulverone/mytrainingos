@@ -74,22 +74,29 @@ def read_mfa_from_email(timeout=180):
         print(f"⏳ Waiting for MFA email (timeout: {timeout}s)...")
         send_telegram("📧 <b>Garmin Sync Started</b>\n\nWaiting for MFA email from Garmin...")
         
-        # Calculate cutoff time (only look at emails from last 5 minutes)
-        cutoff_time = datetime.now() - timedelta(minutes=5)
-        
         while time.time() - start_time < timeout:
-            # Search for emails from Garmin
-            search_criteria = '(FROM "noreply@garmin.com" SUBJECT "passcode")'
+            # Search for UNSEEN emails from Garmin (more flexible search)
+            # Try multiple search strategies
+            search_strategies = [
+                '(UNSEEN FROM "garmin")',          # New unread from Garmin
+                '(FROM "noreply@garmin.com")',     # All from Garmin noreply
+                '(FROM "garmin" SUBJECT "code")',  # Subject contains "code"
+                '(FROM "garmin")',                 # Any from Garmin
+            ]
             
-            try:
-                status, messages = mail.search(None, search_criteria)
-                if status != 'OK':
-                    # Try alternative search
-                    status, messages = mail.search(None, 'FROM', '"garmin"')
-            except:
-                status, messages = mail.search(None, 'FROM', '"garmin"')
+            email_ids = []
+            for criteria in search_strategies:
+                try:
+                    status, messages = mail.search(None, criteria)
+                    if status == 'OK' and messages[0]:
+                        email_ids = messages[0].split()
+                        print(f"   Found {len(email_ids)} emails with: {criteria}")
+                        break
+                except Exception as e:
+                    print(f"   Search failed for {criteria}: {e}")
+                    continue
             
-            if status == 'OK' and messages[0]:
+            if email_ids:
                 email_ids = messages[0].split()
                 
                 # Check most recent emails first
