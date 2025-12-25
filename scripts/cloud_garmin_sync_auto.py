@@ -262,8 +262,9 @@ def sync_garmin():
                 raise Exception("Failed to get MFA code from email")
             
             # Step 3: Resume login with the state from login() AND the MFA code
+            # Use garth.client.resume_login which sets tokens internally
             print(f"🔑 Submitting MFA code...")
-            garth.sso.resume_login(result2, mfa_code)
+            garth.client.resume_login(result2, mfa_code)
             print("✅ Login successful with MFA!")
         else:
             # Login succeeded without MFA - result1, result2 are oauth1, oauth2 tokens
