@@ -75,13 +75,15 @@ def read_mfa_from_email(timeout=180):
         send_telegram("📧 <b>Garmin Sync Started</b>\n\nWaiting for MFA email from Garmin...")
         
         while time.time() - start_time < timeout:
-            # Search for UNSEEN emails from Garmin (more flexible search)
-            # Try multiple search strategies
+            # Search for UNSEEN emails from Garmin (correct sender!)
+            # Note: Garmin uses alerts@account.garmin.com and Italian subject "Passcode di sicurezza"
             search_strategies = [
-                '(UNSEEN FROM "garmin")',          # New unread from Garmin
-                '(FROM "noreply@garmin.com")',     # All from Garmin noreply
-                '(FROM "garmin" SUBJECT "code")',  # Subject contains "code"
-                '(FROM "garmin")',                 # Any from Garmin
+                '(UNSEEN FROM "alerts@account.garmin.com")',  # New unread from Garmin
+                '(FROM "alerts@account.garmin.com")',          # All from Garmin alerts
+                '(UNSEEN FROM "garmin")',                      # Any new from Garmin
+                '(FROM "garmin" SUBJECT "sicurezza")',         # Italian subject
+                '(FROM "garmin" SUBJECT "passcode")',          # English subject
+                '(FROM "garmin")',                             # Fallback: any from Garmin
             ]
             
             email_ids = []
