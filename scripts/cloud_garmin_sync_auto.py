@@ -296,11 +296,36 @@ def sync_garmin():
             except Exception as e:
                 print(f"⚠️ Could not read workouts.json: {e}")
         
-        # Determine if this is first run (no processed activities)
+        # Check if we need historical sync:
+        # 1. Force via env var (for manual re-sync)
+        # 2. Less than 10 activities (new installation)
+        # 3. Oldest activity is less than 11 months old (incomplete history)
+        force_historical = os.environ.get('FORCE_HISTORICAL_SYNC', '').lower() == 'true'
         is_first_run = len(processed_ids) < 10
         
-        if is_first_run:
-            print(f"\n📆 HISTORICAL SYNC: Downloading last {HISTORICAL_MONTHS} months...")
+        # Check date coverage from workouts.json activities
+        needs_historical = False
+        if workouts_file.exists() and not is_first_run:
+            try:
+                with open(workouts_file, 'r') as f:
+                    workouts_data = json.load(f)
+                    activities_list = workouts_data.get('activities', [])
+                    if activities_list:
+                        from datetime import timedelta
+                        dates = [datetime.fromisoformat(a['start_time']) for a in activities_list if a.get('start_time')]
+                        if dates:
+                            oldest = min(dates)
+                            days_covered = (datetime.now() - oldest).days
+                            print(f"📊 Current data covers {days_covered} days (from {oldest.strftime('%Y-%m-%d')})")
+                            if days_covered < 330:  # Less than ~11 months
+                                print(f"⚠️ Need to fetch more historical data to cover full year")
+                                needs_historical = True
+            except Exception as e:
+                print(f"⚠️ Could not check date coverage: {e}")
+        
+        if force_historical or is_first_run or needs_historical:
+            reason = "FORCED" if force_historical else ("NEW INSTALL" if is_first_run else "INCOMPLETE HISTORY")
+            print(f"\n📆 HISTORICAL SYNC ({reason}): Downloading last {HISTORICAL_MONTHS} months...")
             send_telegram(f"📆 <b>Sync Storico</b>\n\nScaricando {HISTORICAL_MONTHS} mesi di attività...")
             
             # Fetch multiple pages of activities

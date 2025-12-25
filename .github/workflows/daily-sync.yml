@@ -2,8 +2,10 @@ name: Daily Sync
 
 on:
   schedule:
-    # Runs at 19:00 UTC = 20:00 CET (ora italiana)
-    - cron: "0 19 * * *"
+    # Runs at 5:00 UTC = 6:00 CET (ora italiana)
+    - cron: "0 5 * * *"
+    # Runs at 13:00 UTC = 14:00 CET (ora italiana)
+    - cron: "0 13 * * *"
   workflow_dispatch: # Allow manual trigger
 
 env:
