@@ -161,9 +161,32 @@ def read_mfa_from_email(timeout=180):
                                 body = str(msg.get_payload())
                         
                         # Extract 6-digit code from body
-                        code_match = re.search(r'\b(\d{6})\b', body)
-                        if code_match:
-                            code = code_match.group(1)
+                        # Clean HTML entities and tags for better extraction
+                        clean_body = re.sub(r'<[^>]+>', ' ', body)  # Remove HTML tags
+                        clean_body = re.sub(r'&nbsp;', ' ', clean_body)  # Replace nbsp
+                        clean_body = re.sub(r'&#\d+;', '', clean_body)  # Remove HTML entities
+                        clean_body = re.sub(r'\s+', ' ', clean_body)  # Normalize whitespace
+                        
+                        # Debug: show snippet of body
+                        print(f"   Email snippet: ...{clean_body[200:350]}..." if len(clean_body) > 350 else f"   Email: {clean_body}")
+                        
+                        # Try multiple patterns to find the 6-digit code
+                        code = None
+                        patterns = [
+                            r'codice di sicurezza[^\d]*(\d{6})',  # Italian: after "codice di sicurezza"
+                            r'passcode[^\d]*(\d{6})',              # After "passcode"  
+                            r'code[^\d]*(\d{6})',                  # After "code"
+                            r'\b(\d{6})\b',                        # Any standalone 6-digit number
+                        ]
+                        
+                        for pattern in patterns:
+                            match = re.search(pattern, clean_body, re.IGNORECASE)
+                            if match:
+                                code = match.group(1)
+                                print(f"   Matched with pattern: {pattern}")
+                                break
+                        
+                        if code:
                             print(f"✅ Found MFA code: {code[:2]}****")
                             
                             # Mark email as read
