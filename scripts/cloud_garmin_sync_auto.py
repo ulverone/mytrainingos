@@ -262,8 +262,8 @@ def sync_garmin():
         else:
             print("✅ Login successful (no MFA required)!")
         
-        # Save session for future use
-        garth.save("~/.garth")
+        # Skip session save - not needed in ephemeral GitHub Actions environment
+        # and garth.save() causes "Object of type Client is not JSON serializable" error
         
         # Use garth directly for API calls (no need for Garmin wrapper which causes serialization issues)
         print("📡 Fetching activities from Garmin Connect...")
