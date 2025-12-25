@@ -263,7 +263,7 @@ def sync_garmin():
             
             # Step 3: Resume login with the state from login() AND the MFA code
             print(f"🔑 Submitting MFA code...")
-            garth.resume_login(result2, mfa_code)
+            garth.sso.resume_login(result2, mfa_code)
             print("✅ Login successful with MFA!")
         else:
             # Login succeeded without MFA - result1, result2 are oauth1, oauth2 tokens
