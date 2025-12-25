@@ -11,6 +11,8 @@ env:
   TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
   GARMIN_EMAIL: ${{ secrets.GARMIN_EMAIL }}
   GARMIN_PASSWORD: ${{ secrets.GARMIN_PASSWORD }}
+  MFA_EMAIL_ADDRESS: ${{ secrets.MFA_EMAIL_ADDRESS }}
+  MFA_EMAIL_PASSWORD: ${{ secrets.MFA_EMAIL_PASSWORD }}
   OURA_ACCESS_TOKEN: ${{ secrets.OURA_ACCESS_TOKEN }}
   OURA_REFRESH_TOKEN: ${{ secrets.OURA_REFRESH_TOKEN }}
   OURA_CLIENT_ID: ${{ secrets.OURA_CLIENT_ID }}
@@ -40,10 +42,10 @@ jobs:
           python scripts/cloud_oura_sync.py
         continue-on-error: true
 
-      - name: Sync Garmin Data
+      - name: Sync Garmin Data (Automatic Email MFA)
         run: |
-          python scripts/cloud_garmin_sync.py
-        timeout-minutes: 10 # Max 10 minutes for MFA
+          python scripts/cloud_garmin_sync_auto.py
+        timeout-minutes: 5 # Reduced - no manual wait needed
         continue-on-error: true
 
       - name: Process FIT files
