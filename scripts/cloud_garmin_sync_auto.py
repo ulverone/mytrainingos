@@ -198,14 +198,6 @@ def read_mfa_from_email(timeout=180):
         return None
 
 
-def email_mfa_prompt():
-    """
-    Custom MFA handler for garth library.
-    Called when Garmin requests MFA - reads code from email automatically.
-    """
-    return read_mfa_from_email()
-
-
 def sync_garmin():
     """Main sync function with automatic email MFA."""
     import garth
@@ -226,10 +218,27 @@ def sync_garmin():
         shutil.rmtree(garth_dir)
     
     try:
-        # Login with automatic email MFA
+        # Login with automatic email MFA using return_on_mfa approach
+        # Step 1: Start login, this will trigger Garmin to SEND the MFA email
         print("🔐 Logging in to Garmin Connect...")
-        garth.login(GARMIN_EMAIL, GARMIN_PASSWORD, prompt_mfa=email_mfa_prompt)
-        print("✅ Login successful!")
+        result = garth.login(GARMIN_EMAIL, GARMIN_PASSWORD, return_on_mfa=True)
+        
+        if result is None:
+            # MFA is required - Garmin has now SENT the email
+            print("📧 MFA required - waiting for email from Garmin...")
+            
+            # Step 2: Read the MFA code from email (now that it was sent)
+            mfa_code = read_mfa_from_email(timeout=180)
+            
+            if not mfa_code:
+                raise Exception("Failed to get MFA code from email")
+            
+            # Step 3: Resume login with the MFA code
+            print(f"🔑 Submitting MFA code...")
+            garth.resume_login(mfa_code)
+            print("✅ Login successful with MFA!")
+        else:
+            print("✅ Login successful (no MFA required)!")
         
         # Save session for future use
         garth.save("~/.garth")
