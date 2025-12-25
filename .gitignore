@@ -14,7 +14,7 @@ __pycache__/
 .idea/
 .vscode/
 
-# Downloaded data (will be generated)
+# Downloaded data (regenerated each run, IDs tracked in workouts.json)
 data/fit_files/
 data/activities/
 logs/

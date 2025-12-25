@@ -220,9 +220,24 @@ def sync_garmin():
         data_dir = Path("data/activities")
         data_dir.mkdir(parents=True, exist_ok=True)
         
-        # Check if we need historical sync
-        existing_files = list(data_dir.glob("*.zip"))
-        is_first_run = len(existing_files) < 10
+        # Check workouts.json for already processed activity IDs
+        # This persists across runs since workouts.json IS committed to the repo
+        workouts_file = Path("data/workouts.json")
+        processed_ids = set()
+        
+        if workouts_file.exists():
+            try:
+                with open(workouts_file, 'r') as f:
+                    workouts_data = json.load(f)
+                    for activity in workouts_data.get('activities', []):
+                        if activity.get('id'):
+                            processed_ids.add(str(activity['id']))
+                print(f"📋 Found {len(processed_ids)} already processed activities in workouts.json")
+            except Exception as e:
+                print(f"⚠️ Could not read workouts.json: {e}")
+        
+        # Determine if this is first run (no processed activities)
+        is_first_run = len(processed_ids) < 10
         
         if is_first_run:
             print(f"\n📆 HISTORICAL SYNC: Downloading last {HISTORICAL_MONTHS} months...")
@@ -255,26 +270,29 @@ def sync_garmin():
                 time.sleep(0.5)
             
             activities = [a for a in all_activities if a.get("startTimeLocal")]
-            print(f"📋 Found {len(activities)} activities")
+            print(f"📋 Found {len(activities)} activities in Garmin")
         else:
             print("📋 Daily sync: Fetching recent activities...")
+            send_telegram("📋 <b>Daily Sync</b>\n\nChecking for new activities...")
             activities = client.get_activities(0, 30)
             print(f"   Found {len(activities)} recent activities")
         
-        # Download activities
+        # Download only activities NOT already processed
         downloaded = 0
         skipped = 0
         errors = 0
         
         for i, act in enumerate(activities):
-            activity_id = act.get("activityId")
+            activity_id = str(act.get("activityId"))
             if not activity_id:
                 continue
             
-            fit_path = data_dir / f"{activity_id}.zip"
-            if fit_path.exists():
+            # Skip if already processed (in workouts.json)
+            if activity_id in processed_ids:
                 skipped += 1
                 continue
+            
+            fit_path = data_dir / f"{activity_id}.zip"
             
             activity_name = act.get("activityName", "Unknown")[:30]
             print(f"   📥 [{i+1}/{len(activities)}] {activity_name}...")
