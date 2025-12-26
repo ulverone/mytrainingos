@@ -1,5 +1,5 @@
 {
-  "syncDate": "2025-12-26T05:17:40.757567",
+  "syncDate": "2025-12-26T13:29:15.284703",
   "startDate": "2025-11-14",
   "endDate": "2025-12-26",
   "sleep": [
@@ -572,6 +572,21 @@
       "day": "2025-12-25",
       "score": 71,
       "timestamp": "2025-12-25T00:00:00.000+00:00"
+    },
+    {
+      "id": "6bb764ba-6252-444d-b755-c0e1af1d93f7",
+      "contributors": {
+        "deep_sleep": 96,
+        "efficiency": 88,
+        "latency": 91,
+        "rem_sleep": 95,
+        "restfulness": 76,
+        "timing": 100,
+        "total_sleep": 95
+      },
+      "day": "2025-12-26",
+      "score": 92,
+      "timestamp": "2025-12-26T00:00:00.000+00:00"
     }
   ],
   "readiness": [
@@ -1296,6 +1311,25 @@
       "temperature_deviation": 0.18,
       "temperature_trend_deviation": 0.24,
       "timestamp": "2025-12-25T00:00:00.000+00:00"
+    },
+    {
+      "id": "4b4b987c-b8bc-4d91-9bf0-7302b5f609e7",
+      "contributors": {
+        "activity_balance": 90,
+        "body_temperature": 97,
+        "hrv_balance": 65,
+        "previous_day_activity": 100,
+        "previous_night": 100,
+        "recovery_index": 50,
+        "resting_heart_rate": 66,
+        "sleep_balance": 83,
+        "sleep_regularity": 73
+      },
+      "day": "2025-12-26",
+      "score": 78,
+      "temperature_deviation": 0.11,
+      "temperature_trend_deviation": 0.03,
+      "timestamp": "2025-12-26T00:00:00.000+00:00"
     }
   ],
   "activity": [
@@ -63461,6 +63495,19 @@
     }
   ],
   "daily": [
+    {
+      "date": "2025-12-26",
+      "sleepScore": 92,
+      "totalSleep": 95,
+      "deepSleep": 96,
+      "efficiency": 88,
+      "hrv": 32,
+      "lowestHR": 47,
+      "readinessScore": 78,
+      "hrvBalance": 65,
+      "recoveryIndex": 50,
+      "restingHR": 66
+    },
     {
       "date": "2025-12-25",
       "sleepScore": 71,
