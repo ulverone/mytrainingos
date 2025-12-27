@@ -1,19 +1,13 @@
 {
-  "last_updated": "2025-12-27T05:26:01.616188",
-  "total_activities": 502,
+  "last_updated": "2025-12-27T13:33:54.960729",
+  "total_activities": 503,
   "performance": {
-    "ctl": 27.2,
-    "atl": 30.4,
-    "tsb": -3.2,
+    "ctl": 28.4,
+    "atl": 36.0,
+    "tsb": -7.6,
     "form": "Optimal"
   },
   "history": [
-    {
-      "date": "2025-09-28",
-      "ctl": 36.8,
-      "atl": 43.4,
-      "tsb": -6.6
-    },
     {
       "date": "2025-09-29",
       "ctl": 36.7,
@@ -547,10 +541,15 @@
       "ctl": 27.2,
       "atl": 30.4,
       "tsb": -3.2
+    },
+    {
+      "date": "2025-12-27",
+      "ctl": 28.4,
+      "atl": 36.0,
+      "tsb": -7.6
     }
   ],
   "daily_tss": {
-    "2025-11-13": 25.5,
     "2025-11-14": 46.1,
     "2025-11-15": 161.3,
     "2025-11-16": 4.0,
@@ -591,9 +590,26 @@
     "2025-12-22": 39.9,
     "2025-12-23": 22.7,
     "2025-12-24": 2.4,
-    "2025-12-26": 80.80000000000001
+    "2025-12-26": 80.80000000000001,
+    "2025-12-27": 52.8
   },
   "activities": [
+    {
+      "sport": "walking",
+      "start_time": "2025-12-27T09:42:35",
+      "duration": 10260,
+      "distance": 10.66,
+      "calories": 718,
+      "avg_hr": 71,
+      "max_hr": 103,
+      "avg_power": null,
+      "max_power": null,
+      "normalized_power": null,
+      "tss": 52.8,
+      "elevation_gain": 40,
+      "avg_cadence": 45,
+      "id": "21363687377"
+    },
     {
       "sport": "running",
       "start_time": "2025-12-26T15:06:05",
@@ -2177,22 +2193,6 @@
       "elevation_gain": 0,
       "avg_cadence": 28,
       "id": "20764025430"
-    },
-    {
-      "sport": "running",
-      "start_time": "2025-10-22T04:17:47",
-      "duration": 1814,
-      "distance": 6.13,
-      "calories": 472,
-      "avg_hr": 135,
-      "max_hr": 159,
-      "avg_power": 386,
-      "max_power": 537,
-      "normalized_power": 392,
-      "tss": 1.2,
-      "elevation_gain": 15,
-      "avg_cadence": 89,
-      "id": "20761546810"
     }
   ]
 }
