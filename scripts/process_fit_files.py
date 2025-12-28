@@ -51,7 +51,9 @@ def parse_fit_file(fit_data):
             'normalized_power': None,
             'tss': None,
             'elevation_gain': 0,
+            'elevation_gain': 0,
             'avg_cadence': None,
+            'avg_speed': None,
         }
         
         hr_values = []
@@ -62,7 +64,7 @@ def parse_fit_file(fit_data):
             if record.name == 'session':
                 for field in record.fields:
                     if field.name == 'sport':
-                        activity['sport'] = str(field.value)
+                        activity['sport'] = get_sport_label(field.value)
                     elif field.name == 'start_time':
                         activity['start_time'] = field.value.isoformat() if field.value else None
                     elif field.name == 'total_elapsed_time':
@@ -85,8 +87,13 @@ def parse_fit_file(fit_data):
                         activity['elevation_gain'] = int(field.value) if field.value else 0
                     elif field.name == 'avg_cadence':
                         activity['avg_cadence'] = int(field.value) if field.value else None
+                    elif field.name == 'enhanced_avg_speed' or field.name == 'avg_speed':
+                        activity['avg_speed'] = float(field.value) if field.value else None
                     elif field.name == 'training_stress_score':
-                        activity['tss'] = round(field.value, 1) if field.value else None
+                        # Valid TSS from device usually preferred, but user reported issues.
+                        # Using our formula for consistency unless 0.
+                        val = field.value
+                        activity['tss'] = round(val, 1) if val and val > 10 else None
             
             # Collect record data for calculations
             elif record.name == 'record':
@@ -109,6 +116,11 @@ def parse_fit_file(fit_data):
             activity['max_power'] = max(power_values)
         if not activity['avg_cadence'] and cadence_values:
             activity['avg_cadence'] = int(sum(cadence_values) / len(cadence_values))
+            
+        # Backfill avg_speed if missing (m/s)
+        if not activity['avg_speed'] and activity['distance'] and activity['duration']:
+            # distance is in km, convert to meters for m/s
+            activity['avg_speed'] = (activity['distance'] * 1000) / activity['duration']
         
         # Estimate TSS if not provided
         if not activity['tss'] and activity['duration']:
@@ -121,43 +133,137 @@ def parse_fit_file(fit_data):
         return None
 
 
+# User settings
+USER_CYCLING_FTP = 250  # Watts
+USER_RUNNING_FTP = 380  # Running Critical Power (Watts)
+USER_LTHR = 165         # LTHR (bpm)
+USER_RUN_THRESHOLD_PACE = "4:30"  # min/km
+USER_SWIM_THRESHOLD_PACE = "1:45" # min/100m
+
+# Activity type mapping (FIT sport -> Italian label)
+SPORT_MAPPING = {
+    'running': 'Corsa',
+    'cycling': 'Ciclismo',
+    'swimming': 'Nuoto',
+    'lap_swimming': 'Nuoto',
+    'training': 'Allenamento',
+    'strength_training': 'Forza',
+    'hiking': 'Escursionismo',
+    'walking': 'Camminata',
+    'soccer': 'Calcio',
+    'tennis': 'Tennis',
+    'basketball': 'Basket',
+    'generic': 'Altro'
+}
+
+def parse_pace_to_speed(pace_str, dist_unit_meters=1000):
+    """
+    Convert pace string (mm:ss per unit) to speed (m/s).
+    Example: '4:30' min/km -> 270s/km -> 1000/270 = 3.7 m/s
+    Example: '1:45' min/100m -> 105s/100m -> 100/105 = 0.95 m/s
+    """
+    try:
+        parts = pace_str.split(':')
+        seconds = int(parts[0]) * 60 + int(parts[1])
+        if seconds == 0: return 0
+        return dist_unit_meters / seconds
+    except:
+        return 0
+
+def get_sport_label(sport_raw):
+    """Normalize and translate sport label."""
+    if not sport_raw:
+        return 'Altro'
+    
+    raw = str(sport_raw).lower()
+    
+    # Direct match
+    if raw in SPORT_MAPPING:
+        return SPORT_MAPPING[raw]
+    
+    # Substring match
+    for key, label in SPORT_MAPPING.items():
+        if key in raw:
+            return label
+            
+    return 'Altro'
+
 def estimate_tss(activity):
     """
-    Estimate TSS based on available data.
-    Uses hrTSS formula if HR data available, otherwise duration-based estimate.
+    Estimate TSS based on sport-specific algorithms (Power, rTSS, sTSS).
     """
-    duration_hours = activity['duration'] / 3600
+    duration_seconds = activity['duration']
+    duration_hours = duration_seconds / 3600
+    sport = (activity['sport'] or '').lower()
     
-    # If we have power data, use simple power-based TSS
+    # 1. SWIMMING (sTSS) - Based on Normalized Swim Speed (using Avg Speed for now)
+    if 'nuoto' in sport or 'swimming' in sport:
+        # Calculate threshold speed (m/s)
+        thresh_speed = parse_pace_to_speed(USER_SWIM_THRESHOLD_PACE, 100) # m/s (based on 100m)
+        
+        avg_speed = activity.get('avg_speed', 0)
+        
+        # If no speed, try to calc from dist/time
+        if not avg_speed and activity['distance'] and activity['duration']:
+            avg_speed = activity['distance'] / activity['duration']
+            
+        if avg_speed and thresh_speed > 0:
+            # IF = SwimSpeed / ThresholdSpeed (Intensity Factor)
+            # Normalized Swim Speed is roughly Avg Speed for continuous swims
+            intensity_factor = avg_speed / thresh_speed
+            
+            # sTSS = IF^3 * hours * 100
+            stss = (intensity_factor ** 3) * duration_hours * 100
+            return round(min(stss, 600), 1)
+            
+    # 2. CYCLING & RUNNING with Power (TSS)
     if activity['normalized_power'] or activity['avg_power']:
         np = activity['normalized_power'] or activity['avg_power']
-        # Assume FTP of 250W for cycling, adjust as needed
-        ftp = 250
+        
+        ftp = USER_CYCLING_FTP
+        if 'corsa' in sport or 'running' in sport:
+            ftp = USER_RUNNING_FTP
+        
         intensity_factor = np / ftp
-        tss = (duration_hours * np * intensity_factor) / (ftp * 3600) * 100
-        return round(min(tss * 36, 500), 1)  # Cap at 500
-    
-    # HR-based TSS estimation
+        tss = (duration_seconds * np * intensity_factor) / (ftp * 3600) * 100
+        return round(min(tss, 600), 1)
+        
+    # 3. RUNNING without Power (rTSS) - Based on NGP (using Avg Speed/Grade normalized)
+    if 'corsa' in sport or 'running' in sport:
+        # Calculate threshold speed (m/s)
+        thresh_speed = parse_pace_to_speed(USER_RUN_THRESHOLD_PACE, 1000) # m/s
+        
+        avg_speed = activity.get('avg_speed', 0)
+        if not avg_speed and activity['distance'] and activity['duration']:
+            avg_speed = activity['distance'] / activity['duration']
+            
+        if avg_speed and thresh_speed > 0:
+            # Simple rTSS estimation using speed ratio (NGP approx)
+            # IF = AvgSpeed / ThresholdSpeed
+            # Real rTSS uses NGP, but we fallback to avg speed
+            intensity_factor = avg_speed / thresh_speed
+            
+            # rTSS = IF^2 * hours * 100
+            rtss = (intensity_factor ** 2) * duration_hours * 100
+            return round(min(rtss, 600), 1)
+
+    # 4. HR-BASED CALCULATION (Fallback)
     if activity['avg_hr']:
-        # Assume LTHR of 165, adjust as needed
-        lthr = 165
-        hr_ratio = activity['avg_hr'] / lthr
-        # Simplified hrTSS formula
-        tss = duration_hours * hr_ratio * hr_ratio * 100
-        return round(min(tss, 500), 1)
+        hr_ratio = activity['avg_hr'] / USER_LTHR
+        tss = duration_hours * (hr_ratio * hr_ratio) * 100
+        return round(min(tss, 600), 1)
     
-    # Duration-based fallback
-    sport = (activity['sport'] or '').lower()
-    if 'running' in sport:
-        tss = duration_hours * 80  # Running is high stress
-    elif 'cycling' in sport:
+    # 5. DURATION-BASED FALLBACK
+    if 'corsa' in sport or 'running' in sport:
         tss = duration_hours * 60
-    elif 'swimming' in sport:
-        tss = duration_hours * 70
+    elif 'ciclismo' in sport or 'cycling' in sport:
+        tss = duration_hours * 50
+    elif 'nuoto' in sport or 'swimming' in sport:
+        tss = duration_hours * 45
     else:
-        tss = duration_hours * 50  # Default moderate
+        tss = duration_hours * 40
     
-    return round(min(tss, 500), 1)
+    return round(min(tss, 600), 1)
 
 
 def calculate_performance_metrics(activities):
@@ -317,18 +423,26 @@ def main():
             'maxHR': act.get('max_hr'),
             'avgPower': act.get('avg_power'),
             'normalizedPower': act.get('normalized_power'),
-            'avgSpeed': None,
+            'avgSpeed': act.get('avg_speed'),
             'calories': act.get('calories'),
             'laps': [],
             'tss': act.get('tss'),
-            'tssType': 'hrTSS' if act.get('avg_hr') else 'TSS',
-            'IF': round((act.get('normalized_power') or act.get('avg_power') or 0) / 250, 2) if act.get('avg_power') else None,
+            'tssType': 'hrTSS' if not act.get('normalized_power') and act.get('avg_hr') else 'TSS',
+            # IF calculated later based on sport
+            'IF': None,
             'filename': f"{act.get('id')}.fit"
         }
         web_activities.append(web_act)
     
     # Sort by date descending
     web_activities_sorted = sorted(web_activities, key=lambda x: x.get('startTime') or '', reverse=True)
+    
+    # Update IF calculation logic for export
+    for act in web_activities_sorted:
+        if act.get('avgPower'):
+            sport_key = (act.get('sport') or '').lower()
+            ftp = USER_RUNNING_FTP if 'corsa' in sport_key else USER_CYCLING_FTP
+            act['IF'] = round((act.get('normalizedPower') or act.get('avgPower')) / ftp, 2)
     
     activities_output = {
         'exportDate': datetime.now().isoformat(),
