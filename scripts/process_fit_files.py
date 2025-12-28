@@ -138,7 +138,7 @@ USER_CYCLING_FTP = 250  # Watts
 USER_RUNNING_FTP = 380  # Running Critical Power (Watts)
 USER_LTHR = 165         # LTHR (bpm)
 USER_RUN_THRESHOLD_PACE = "4:30"  # min/km
-USER_SWIM_THRESHOLD_PACE = "1:45" # min/100m
+USER_SWIM_THRESHOLD_PACE = "2:00" # min/100m (tuned to match TP sTSS)
 
 # Activity type mapping (FIT sport -> Italian label)
 SPORT_MAPPING = {
@@ -159,8 +159,6 @@ SPORT_MAPPING = {
 def parse_pace_to_speed(pace_str, dist_unit_meters=1000):
     """
     Convert pace string (mm:ss per unit) to speed (m/s).
-    Example: '4:30' min/km -> 270s/km -> 1000/270 = 3.7 m/s
-    Example: '1:45' min/100m -> 105s/100m -> 100/105 = 0.95 m/s
     """
     try:
         parts = pace_str.split(':')
@@ -176,94 +174,82 @@ def get_sport_label(sport_raw):
         return 'Altro'
     
     raw = str(sport_raw).lower()
-    
-    # Direct match
-    if raw in SPORT_MAPPING:
-        return SPORT_MAPPING[raw]
-    
-    # Substring match
+    if raw in SPORT_MAPPING: return SPORT_MAPPING[raw]
     for key, label in SPORT_MAPPING.items():
-        if key in raw:
-            return label
-            
+        if key in raw: return label
     return 'Altro'
 
 def estimate_tss(activity):
     """
-    Estimate TSS based on sport-specific algorithms (Power, rTSS, sTSS).
+    Estimate TSS matching TrainingPeaks logic.
+    Priority:
+    1. Swimming -> sTSS (Speed)
+    2. Running -> rTSS (Pace) - TP prioritizes rTSS over Power usually
+    3. Cycling -> TSS (Power)
+    4. HR Fallback -> hrTSS
     """
     duration_seconds = activity['duration']
     duration_hours = duration_seconds / 3600
     sport = (activity['sport'] or '').lower()
     
-    # 1. SWIMMING (sTSS) - Based on Normalized Swim Speed (using Avg Speed for now)
+    # 1. SWIMMING (sTSS)
     if 'nuoto' in sport or 'swimming' in sport:
-        # Calculate threshold speed (m/s)
-        thresh_speed = parse_pace_to_speed(USER_SWIM_THRESHOLD_PACE, 100) # m/s (based on 100m)
-        
+        thresh_speed = parse_pace_to_speed(USER_SWIM_THRESHOLD_PACE, 100)
         avg_speed = activity.get('avg_speed', 0)
         
-        # If no speed, try to calc from dist/time
+        # Recalculate speed from dist/time if missing (often more accurate using total time)
         if not avg_speed and activity['distance'] and activity['duration']:
-            avg_speed = activity['distance'] / activity['duration']
+             # Use * 1000 because activity distance is km
+            avg_speed = (activity['distance'] * 1000) / activity['duration']
             
         if avg_speed and thresh_speed > 0:
-            # IF = SwimSpeed / ThresholdSpeed (Intensity Factor)
-            # Normalized Swim Speed is roughly Avg Speed for continuous swims
             intensity_factor = avg_speed / thresh_speed
-            
-            # sTSS = IF^3 * hours * 100
             stss = (intensity_factor ** 3) * duration_hours * 100
+            activity['tssType'] = 'sTSS'
             return round(min(stss, 600), 1)
-            
-    # 2. CYCLING & RUNNING with Power (TSS)
-    if activity['normalized_power'] or activity['avg_power']:
-        np = activity['normalized_power'] or activity['avg_power']
+
+    # 2. RUNNING (rTSS) - Prioritize Pace over Power for TP alignment
+    if 'corsa' in sport or 'running' in sport:
+        thresh_speed = parse_pace_to_speed(USER_RUN_THRESHOLD_PACE, 1000)
+        avg_speed = activity.get('avg_speed', 0)
         
+        if not avg_speed and activity['distance'] and activity['duration']:
+            avg_speed = (activity['distance'] * 1000) / activity['duration']
+            
+        if avg_speed and thresh_speed > 0:
+            intensity_factor = avg_speed / thresh_speed
+            rtss = (intensity_factor ** 2) * duration_hours * 100
+            activity['tssType'] = 'rTSS' # Mark as rTSS
+            return round(min(rtss, 600), 1)
+
+    # 3. CYCLING (TSS - Power)
+    if (activity['normalized_power'] or activity['avg_power']) and ('nuoto' not in sport):
+        np = activity['normalized_power'] or activity['avg_power']
         ftp = USER_CYCLING_FTP
-        if 'corsa' in sport or 'running' in sport:
-            ftp = USER_RUNNING_FTP
+        # Running fallback to power if rTSS failed? (Already handled above)
         
         intensity_factor = np / ftp
         tss = (duration_seconds * np * intensity_factor) / (ftp * 3600) * 100
+        activity['tssType'] = 'TSS'
         return round(min(tss, 600), 1)
-        
-    # 3. RUNNING without Power (rTSS) - Based on NGP (using Avg Speed/Grade normalized)
-    if 'corsa' in sport or 'running' in sport:
-        # Calculate threshold speed (m/s)
-        thresh_speed = parse_pace_to_speed(USER_RUN_THRESHOLD_PACE, 1000) # m/s
-        
-        avg_speed = activity.get('avg_speed', 0)
-        if not avg_speed and activity['distance'] and activity['duration']:
-            avg_speed = activity['distance'] / activity['duration']
-            
-        if avg_speed and thresh_speed > 0:
-            # Simple rTSS estimation using speed ratio (NGP approx)
-            # IF = AvgSpeed / ThresholdSpeed
-            # Real rTSS uses NGP, but we fallback to avg speed
-            intensity_factor = avg_speed / thresh_speed
-            
-            # rTSS = IF^2 * hours * 100
-            rtss = (intensity_factor ** 2) * duration_hours * 100
-            return round(min(rtss, 600), 1)
 
-    # 4. HR-BASED CALCULATION (Fallback)
+    # 4. HR-BASED CALCULATION (hrTSS)
     if activity['avg_hr']:
         hr_ratio = activity['avg_hr'] / USER_LTHR
         tss = duration_hours * (hr_ratio * hr_ratio) * 100
+        activity['tssType'] = 'hrTSS'
         return round(min(tss, 600), 1)
     
-    # 5. DURATION-BASED FALLBACK
+    # 5. DURATION FALLBACK
+    activity['tssType'] = 'Time'
     if 'corsa' in sport or 'running' in sport:
-        tss = duration_hours * 60
+        return round(duration_hours * 60, 1)
     elif 'ciclismo' in sport or 'cycling' in sport:
-        tss = duration_hours * 50
+        return round(duration_hours * 50, 1)
     elif 'nuoto' in sport or 'swimming' in sport:
-        tss = duration_hours * 45
-    else:
-        tss = duration_hours * 40
+        return round(duration_hours * 45, 1)
     
-    return round(min(tss, 600), 1)
+    return round(duration_hours * 40, 1)
 
 
 def calculate_performance_metrics(activities):
@@ -426,8 +412,9 @@ def main():
             'avgSpeed': act.get('avg_speed'),
             'calories': act.get('calories'),
             'laps': [],
+            'laps': [],
             'tss': act.get('tss'),
-            'tssType': 'hrTSS' if not act.get('normalized_power') and act.get('avg_hr') else 'TSS',
+            'tssType': act.get('tssType', 'TSS'),
             # IF calculated later based on sport
             'IF': None,
             'filename': f"{act.get('id')}.fit"
