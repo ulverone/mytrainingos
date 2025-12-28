@@ -154,244 +154,242 @@
                         </div>
                     </div>
                 </div>
-    </div>
 
-    <!-- Secondary Metrics -->
-    <div class="oura-secondary">
-        <div class="oura-stat" id="stat-lowesthr">
-            <span class="stat-icon">💓</span>
-            <span class="stat-label">FC Minima</span>
-            <span class="stat-value" id="oura-lowesthr">--</span>
-            <span class="stat-unit">bpm</span>
-            <span class="stat-range">(40-60)</span>
-        </div>
-        <div class="oura-stat" id="stat-restinghr">
-            <span class="stat-icon">💗</span>
-            <span class="stat-label">Resting HR Score</span>
-            <span class="stat-value" id="oura-restinghr">--</span>
-            <span class="stat-range">(70+)</span>
-        </div>
-        <div class="oura-stat" id="stat-hrvbalance">
-            <span class="stat-icon">📊</span>
-            <span class="stat-label">HRV Balance</span>
-            <span class="stat-value" id="oura-hrvbalance">--</span>
-            <span class="stat-range">(70+)</span>
-        </div>
-        <div class="oura-stat" id="stat-efficiency">
-            <span class="stat-icon">📈</span>
-            <span class="stat-label">Efficienza Sonno</span>
-            <span class="stat-value" id="oura-efficiency">--</span>
-            <span class="stat-unit">%</span>
-            <span class="stat-range">(85+)</span>
-        </div>
-        <div class="oura-stat" id="stat-deepsleep">
-            <span class="stat-icon">🌙</span>
-            <span class="stat-label">Deep Sleep Score</span>
-            <span class="stat-value" id="oura-deepsleep">--</span>
-            <span class="stat-range">(70+)</span>
-        </div>
-        <div class="oura-stat" id="stat-totalsleep">
-            <span class="stat-icon">⏰</span>
-            <span class="stat-label">Total Sleep Score</span>
-            <span class="stat-value" id="oura-totalsleep">--</span>
-            <span class="stat-range">(70+)</span>
-        </div>
-    </div>
-    </div>
-
-    <!-- Weekly Summary -->
-    <div class="weekly-section">
-        <h3>Settimana Corrente</h3>
-        <div class="weekly-stats">
-            <div class="weekly-stat">
-                <span class="stat-label">TSS Totale</span>
-                <span class="stat-value" id="weekly-tss">--</span>
-            </div>
-            <div class="weekly-stat">
-                <span class="stat-label">Allenamenti</span>
-                <span class="stat-value" id="weekly-count">--</span>
-            </div>
-            <div class="weekly-stat">
-                <span class="stat-label">Ore</span>
-                <span class="stat-value" id="weekly-hours">--</span>
-            </div>
-            <div class="weekly-stat">
-                <span class="stat-label">Distanza</span>
-                <span class="stat-value" id="weekly-distance">--</span>
-            </div>
-        </div>
-    </div>
-
-    <!-- Sport Breakdown -->
-    <div class="sport-breakdown">
-        <h3>TSS per Sport</h3>
-        <div class="sport-bars">
-            <div class="sport-bar swim">
-                <div class="sport-icon">🏊‍♂️</div>
-                <div class="sport-progress">
-                    <div class="progress-fill" id="swim-progress"></div>
-                </div>
-                <div class="sport-tss" id="swim-tss">--</div>
-            </div>
-            <div class="sport-bar bike">
-                <div class="sport-icon">🚴‍♂️</div>
-                <div class="sport-progress">
-                    <div class="progress-fill" id="bike-progress"></div>
-                </div>
-                <div class="sport-tss" id="bike-tss">--</div>
-            </div>
-            <div class="sport-bar run">
-                <div class="sport-icon">🏃‍♂️</div>
-                <div class="sport-progress">
-                    <div class="progress-fill" id="run-progress"></div>
-                </div>
-                <div class="sport-tss" id="run-tss">--</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Recent Activities -->
-    <div class="recent-activities">
-        <h3>Attività Recenti</h3>
-        <div class="activities-list" id="recent-activities-list">
-            <p class="empty-state">Importa file FIT per visualizzare le attività</p>
-        </div>
-    </div>
-    </section>
-
-    <!-- Calendar View -->
-    <section id="calendar-view" class="view">
-        <header class="view-header">
-            <h2>Calendario</h2>
-            <div class="calendar-nav">
-                <button id="prevMonth" class="btn-nav">◀</button>
-                <span id="currentMonth"></span>
-                <button id="nextMonth" class="btn-nav">▶</button>
-            </div>
-        </header>
-        <div class="calendar-container">
-            <div class="calendar-header">
-                <span>Lun</span>
-                <span>Mar</span>
-                <span>Mer</span>
-                <span>Gio</span>
-                <span>Ven</span>
-                <span>Sab</span>
-                <span>Dom</span>
-                <span class="week-tss-header">TSS</span>
-            </div>
-            <div class="calendar-grid" id="calendar-grid"></div>
-        </div>
-        <div class="weekly-summary" id="weekly-summary"></div>
-    </section>
-
-    <!-- Activities View -->
-    <section id="activities-view" class="view">
-        <header class="view-header">
-            <h2>Tutte le Attività</h2>
-            <div class="filters">
-                <select id="sportFilter">
-                    <option value="all">Tutti gli sport</option>
-                    <option value="cycling">🚴‍♂️ Ciclismo</option>
-                    <option value="running">🏃‍♂️ Corsa</option>
-                    <option value="swimming">🏊‍♂️ Nuoto</option>
-                </select>
-            </div>
-        </header>
-        <div class="activities-table-container">
-            <table class="activities-table">
-                <thead>
-                    <tr>
-                        <th>Data</th>
-                        <th>Sport</th>
-                        <th>Durata</th>
-                        <th>Distanza</th>
-                        <th>TSS</th>
-                        <th>IF</th>
-                        <th>Dettagli</th>
-                    </tr>
-                </thead>
-                <tbody id="activities-tbody"></tbody>
-            </table>
-        </div>
-    </section>
-
-    <!-- PMC Chart View -->
-    <section id="pmc-view" class="view">
-        <header class="view-header">
-            <h2>Performance Management Chart</h2>
-            <div class="chart-controls">
-                <button class="btn-range active" data-range="30">30g</button>
-                <button class="btn-range" data-range="90">90g</button>
-                <button class="btn-range" data-range="180">6m</button>
-                <button class="btn-range" data-range="365">1a</button>
-            </div>
-        </header>
-        <div class="chart-container">
-            <canvas id="pmcChart"></canvas>
-        </div>
-        <div class="chart-legend">
-            <span class="legend-item ctl">● CTL (Fitness)</span>
-            <span class="legend-item atl">● ATL (Fatica)</span>
-            <span class="legend-item tsb">● TSB (Forma)</span>
-            <span class="legend-item tss">■ TSS</span>
-        </div>
-    </section>
-
-    <!-- Settings View -->
-    <section id="settings-view" class="view">
-        <header class="view-header">
-            <h2>Impostazioni</h2>
-        </header>
-        <div class="settings-container">
-            <div class="settings-section">
-                <h3>🚴‍♂️ Ciclismo</h3>
-                <div class="setting-row">
-                    <label>FTP (Functional Threshold Power)</label>
-                    <div class="input-group">
-                        <input type="number" id="ftp" value="300">
-                        <span class="unit">W</span>
+                <!-- Secondary Metrics -->
+                <div class="oura-secondary">
+                    <div class="oura-stat" id="stat-lowesthr">
+                        <span class="stat-icon">💓</span>
+                        <span class="stat-label">FC Minima</span>
+                        <span class="stat-value" id="oura-lowesthr">--</span>
+                        <span class="stat-unit">bpm</span>
+                        <span class="stat-range">(40-60)</span>
+                    </div>
+                    <div class="oura-stat" id="stat-restinghr">
+                        <span class="stat-icon">💗</span>
+                        <span class="stat-label">Resting HR Score</span>
+                        <span class="stat-value" id="oura-restinghr">--</span>
+                        <span class="stat-range">(70+)</span>
+                    </div>
+                    <div class="oura-stat" id="stat-hrvbalance">
+                        <span class="stat-icon">📊</span>
+                        <span class="stat-label">HRV Balance</span>
+                        <span class="stat-value" id="oura-hrvbalance">--</span>
+                        <span class="stat-range">(70+)</span>
+                    </div>
+                    <div class="oura-stat" id="stat-efficiency">
+                        <span class="stat-icon">📈</span>
+                        <span class="stat-label">Efficienza Sonno</span>
+                        <span class="stat-value" id="oura-efficiency">--</span>
+                        <span class="stat-unit">%</span>
+                        <span class="stat-range">(85+)</span>
+                    </div>
+                    <div class="oura-stat" id="stat-deepsleep">
+                        <span class="stat-icon">🌙</span>
+                        <span class="stat-label">Deep Sleep Score</span>
+                        <span class="stat-value" id="oura-deepsleep">--</span>
+                        <span class="stat-range">(70+)</span>
+                    </div>
+                    <div class="oura-stat" id="stat-totalsleep">
+                        <span class="stat-icon">⏰</span>
+                        <span class="stat-label">Total Sleep Score</span>
+                        <span class="stat-value" id="oura-totalsleep">--</span>
+                        <span class="stat-range">(70+)</span>
                     </div>
                 </div>
-            </div>
-            <div class="settings-section">
-                <h3>🏃‍♂️ Corsa</h3>
-                <div class="setting-row">
-                    <label>Threshold Pace</label>
-                    <div class="input-group">
-                        <input type="text" id="runThreshold" value="4:16" placeholder="mm:ss">
-                        <span class="unit">/km</span>
+
+                <!-- Weekly Summary -->
+                <div class="weekly-section">
+                    <h3>Settimana Corrente</h3>
+                    <div class="weekly-stats">
+                        <div class="weekly-stat">
+                            <span class="stat-label">TSS Totale</span>
+                            <span class="stat-value" id="weekly-tss">--</span>
+                        </div>
+                        <div class="weekly-stat">
+                            <span class="stat-label">Allenamenti</span>
+                            <span class="stat-value" id="weekly-count">--</span>
+                        </div>
+                        <div class="weekly-stat">
+                            <span class="stat-label">Ore</span>
+                            <span class="stat-value" id="weekly-hours">--</span>
+                        </div>
+                        <div class="weekly-stat">
+                            <span class="stat-label">Distanza</span>
+                            <span class="stat-value" id="weekly-distance">--</span>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="settings-section">
-                <h3>🏊‍♂️ Nuoto</h3>
-                <div class="setting-row">
-                    <label>Threshold Pace (100m)</label>
-                    <div class="input-group">
-                        <input type="text" id="swimThreshold" value="1:40" placeholder="mm:ss">
-                        <span class="unit">/100m</span>
+
+                <!-- Sport Breakdown -->
+                <div class="sport-breakdown">
+                    <h3>TSS per Sport</h3>
+                    <div class="sport-bars">
+                        <div class="sport-bar swim">
+                            <div class="sport-icon">🏊‍♂️</div>
+                            <div class="sport-progress">
+                                <div class="progress-fill" id="swim-progress"></div>
+                            </div>
+                            <div class="sport-tss" id="swim-tss">--</div>
+                        </div>
+                        <div class="sport-bar bike">
+                            <div class="sport-icon">🚴‍♂️</div>
+                            <div class="sport-progress">
+                                <div class="progress-fill" id="bike-progress"></div>
+                            </div>
+                            <div class="sport-tss" id="bike-tss">--</div>
+                        </div>
+                        <div class="sport-bar run">
+                            <div class="sport-icon">🏃‍♂️</div>
+                            <div class="sport-progress">
+                                <div class="progress-fill" id="run-progress"></div>
+                            </div>
+                            <div class="sport-tss" id="run-tss">--</div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="settings-section">
-                <h3>📂 Dati</h3>
-                <div class="setting-row">
-                    <label>Attività importate</label>
-                    <span id="activityCount">0</span>
+
+                <!-- Recent Activities -->
+                <div class="recent-activities">
+                    <h3>Attività Recenti</h3>
+                    <div class="activities-list" id="recent-activities-list">
+                        <p class="empty-state">Importa file FIT per visualizzare le attività</p>
+                    </div>
                 </div>
-                <div class="setting-actions">
-                    <button id="exportData" class="btn-secondary">Esporta Dati</button>
-                    <button id="clearData" class="btn-danger">Cancella Tutto</button>
+            </section>
+
+            <!-- Calendar View -->
+            <section id="calendar-view" class="view">
+                <header class="view-header">
+                    <h2>Calendario</h2>
+                    <div class="calendar-nav">
+                        <button id="prevMonth" class="btn-nav">◀</button>
+                        <span id="currentMonth"></span>
+                        <button id="nextMonth" class="btn-nav">▶</button>
+                    </div>
+                </header>
+                <div class="calendar-container">
+                    <div class="calendar-header">
+                        <span>Lun</span>
+                        <span>Mar</span>
+                        <span>Mer</span>
+                        <span>Gio</span>
+                        <span>Ven</span>
+                        <span>Sab</span>
+                        <span>Dom</span>
+                        <span class="week-tss-header">TSS</span>
+                    </div>
+                    <div class="calendar-grid" id="calendar-grid"></div>
                 </div>
-            </div>
-            <div class="settings-buttons">
-                <button id="saveSettings" class="btn-primary">💾 Salva Impostazioni</button>
-                <button id="recalculateTSS" class="btn-secondary">🔄 Ricalcola TSS (42g)</button>
-            </div>
-        </div>
-    </section>
-    </main>
+                <div class="weekly-summary" id="weekly-summary"></div>
+            </section>
+
+            <!-- Activities View -->
+            <section id="activities-view" class="view">
+                <header class="view-header">
+                    <h2>Tutte le Attività</h2>
+                    <div class="filters">
+                        <select id="sportFilter">
+                            <option value="all">Tutti gli sport</option>
+                            <option value="cycling">🚴‍♂️ Ciclismo</option>
+                            <option value="running">🏃‍♂️ Corsa</option>
+                            <option value="swimming">🏊‍♂️ Nuoto</option>
+                        </select>
+                    </div>
+                </header>
+                <div class="activities-table-container">
+                    <table class="activities-table">
+                        <thead>
+                            <tr>
+                                <th>Data</th>
+                                <th>Sport</th>
+                                <th>Durata</th>
+                                <th>Distanza</th>
+                                <th>TSS</th>
+                                <th>IF</th>
+                                <th>Dettagli</th>
+                            </tr>
+                        </thead>
+                        <tbody id="activities-tbody"></tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- PMC Chart View -->
+            <section id="pmc-view" class="view">
+                <header class="view-header">
+                    <h2>Performance Management Chart</h2>
+                    <div class="chart-controls">
+                        <button class="btn-range active" data-range="30">30g</button>
+                        <button class="btn-range" data-range="90">90g</button>
+                        <button class="btn-range" data-range="180">6m</button>
+                        <button class="btn-range" data-range="365">1a</button>
+                    </div>
+                </header>
+                <div class="chart-container">
+                    <canvas id="pmcChart"></canvas>
+                </div>
+                <div class="chart-legend">
+                    <span class="legend-item ctl">● CTL (Fitness)</span>
+                    <span class="legend-item atl">● ATL (Fatica)</span>
+                    <span class="legend-item tsb">● TSB (Forma)</span>
+                    <span class="legend-item tss">■ TSS</span>
+                </div>
+            </section>
+
+            <!-- Settings View -->
+            <section id="settings-view" class="view">
+                <header class="view-header">
+                    <h2>Impostazioni</h2>
+                </header>
+                <div class="settings-container">
+                    <div class="settings-section">
+                        <h3>🚴‍♂️ Ciclismo</h3>
+                        <div class="setting-row">
+                            <label>FTP (Functional Threshold Power)</label>
+                            <div class="input-group">
+                                <input type="number" id="ftp" value="300">
+                                <span class="unit">W</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="settings-section">
+                        <h3>🏃‍♂️ Corsa</h3>
+                        <div class="setting-row">
+                            <label>Threshold Pace</label>
+                            <div class="input-group">
+                                <input type="text" id="runThreshold" value="4:16" placeholder="mm:ss">
+                                <span class="unit">/km</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="settings-section">
+                        <h3>🏊‍♂️ Nuoto</h3>
+                        <div class="setting-row">
+                            <label>Threshold Pace (100m)</label>
+                            <div class="input-group">
+                                <input type="text" id="swimThreshold" value="1:40" placeholder="mm:ss">
+                                <span class="unit">/100m</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="settings-section">
+                        <h3>📂 Dati</h3>
+                        <div class="setting-row">
+                            <label>Attività importate</label>
+                            <span id="activityCount">0</span>
+                        </div>
+                        <div class="setting-actions">
+                            <button id="exportData" class="btn-secondary">Esporta Dati</button>
+                            <button id="clearData" class="btn-danger">Cancella Tutto</button>
+                        </div>
+                    </div>
+                    <div class="settings-buttons">
+                        <button id="saveSettings" class="btn-primary">💾 Salva Impostazioni</button>
+                        <button id="recalculateTSS" class="btn-secondary">🔄 Ricalcola TSS (42g)</button>
+                    </div>
+                </div>
+            </section>
+        </main>
     </div>
 
     <!-- Activity Detail Modal -->
