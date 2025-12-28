@@ -195,6 +195,7 @@ def estimate_tss(activity):
     # 1. SWIMMING (sTSS)
     if 'nuoto' in sport or 'swimming' in sport:
         thresh_speed = parse_pace_to_speed(USER_SWIM_THRESHOLD_PACE, 100)
+        # print(f"DEBUG: Swim Threshold Pace: {USER_SWIM_THRESHOLD_PACE}, Speed: {thresh_speed}")
         avg_speed = activity.get('avg_speed', 0)
         
         # Recalculate speed from dist/time if missing (often more accurate using total time)
@@ -208,8 +209,8 @@ def estimate_tss(activity):
             activity['tssType'] = 'sTSS'
             return round(min(stss, 600), 1)
 
-    # 2. RUNNING (rTSS) - Prioritize Pace over Power for TP alignment
-    if 'corsa' in sport or 'running' in sport:
+    # 2. RUNNING & WALKING (rTSS) - Prioritize Pace over Power for TP alignment
+    if 'corsa' in sport or 'running' in sport or 'camminata' in sport or 'walking' in sport:
         thresh_speed = parse_pace_to_speed(USER_RUN_THRESHOLD_PACE, 1000)
         avg_speed = activity.get('avg_speed', 0)
         
