@@ -672,18 +672,35 @@ class App {
     }
 
     getSportIcon(sport) {
-        const icons = { swimming: '🏊‍♂️', cycling: '🚴‍♂️', running: '🏃‍♂️' };
-        return icons[sport] || '🏋️';
+        const s = (sport || '').toLowerCase();
+        if (s === 'swimming' || s === 'nuoto') return '🏊‍♂️';
+        if (s === 'cycling' || s === 'ciclismo') return '🚴‍♂️';
+        if (s === 'running' || s === 'corsa') return '🏃‍♂️';
+        if (s === 'walking' || s === 'camminata') return '🚶';
+        if (s === 'training' || s === 'allenamento') return '🏋️';
+        return '🏅'; // Generic for others
     }
 
     getSportClass(sport) {
-        const classes = { swimming: 'swim', cycling: 'bike', running: 'run' };
-        return classes[sport] || '';
+        const s = (sport || '').toLowerCase();
+        if (s === 'swimming' || s === 'nuoto') return 'swim';
+        if (s === 'cycling' || s === 'ciclismo') return 'bike';
+        if (s === 'running' || s === 'corsa') return 'run';
+        if (s === 'walking' || s === 'camminata') return 'run'; // Re-use run style or add walk
+        return 'other';
     }
 
     getSportName(sport) {
-        const names = { swimming: 'Nuoto', cycling: 'Ciclismo', running: 'Corsa' };
-        return names[sport] || 'Altro';
+        // If it's already one of our known Italian labels, return it capitalized
+        const s = (sport || '').toLowerCase();
+        const map = {
+            'swimming': 'Nuoto', 'nuoto': 'Nuoto',
+            'cycling': 'Ciclismo', 'ciclismo': 'Ciclismo',
+            'running': 'Corsa', 'corsa': 'Corsa',
+            'walking': 'Camminata', 'camminata': 'Camminata',
+            'training': 'Allenamento', 'allenamento': 'Allenamento'
+        };
+        return map[s] || sport || 'Altro'; // Fallback to original string if not found
     }
 
     formatDuration(seconds) {
