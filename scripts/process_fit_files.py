@@ -303,6 +303,44 @@ def main():
     with open(output_file, 'w') as f:
         json.dump(output, f, indent=2, default=str)
     
+    # Also generate activities.json in the format the web app expects (camelCase keys)
+    activities_output_file = Path("data/activities.json")
+    web_activities = []
+    for act in activities:
+        web_act = {
+            'id': act.get('id'),
+            'sport': act.get('sport'),
+            'startTime': act.get('start_time'),
+            'duration': act.get('duration', 0),
+            'distance': (act.get('distance', 0) or 0) * 1000,  # Convert km back to meters for app
+            'avgHR': act.get('avg_hr'),
+            'maxHR': act.get('max_hr'),
+            'avgPower': act.get('avg_power'),
+            'normalizedPower': act.get('normalized_power'),
+            'avgSpeed': None,
+            'calories': act.get('calories'),
+            'laps': [],
+            'tss': act.get('tss'),
+            'tssType': 'hrTSS' if act.get('avg_hr') else 'TSS',
+            'IF': round((act.get('normalized_power') or act.get('avg_power') or 0) / 250, 2) if act.get('avg_power') else None,
+            'filename': f"{act.get('id')}.fit"
+        }
+        web_activities.append(web_act)
+    
+    # Sort by date descending
+    web_activities_sorted = sorted(web_activities, key=lambda x: x.get('startTime') or '', reverse=True)
+    
+    activities_output = {
+        'exportDate': datetime.now().isoformat(),
+        'count': len(web_activities_sorted),
+        'activities': web_activities_sorted
+    }
+    
+    with open(activities_output_file, 'w') as f:
+        json.dump(activities_output, f, indent=2, default=str)
+    
+    print(f"📱 Generated activities.json with {len(web_activities_sorted)} activities for web app")
+    
     print(f"""
 ✅ Processing Complete!
    📥 Processed: {processed} new activities
