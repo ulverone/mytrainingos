@@ -116,6 +116,15 @@ class Database {
         });
     }
 
+    async clearActivities() {
+        return new Promise((resolve, reject) => {
+            const tx = this.db.transaction(['activities'], 'readwrite');
+            const request = tx.objectStore('activities').clear();
+            request.onsuccess = () => resolve();
+            request.onerror = () => reject(request.error);
+        });
+    }
+
     async clearAll() {
         for (const store of ['activities', 'dailyTSS']) {
             await new Promise((resolve, reject) => {

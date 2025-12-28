@@ -80,22 +80,36 @@ class App {
             const response = await fetch('data/activities.json');
             if (response.ok) {
                 const data = await response.json();
-                console.log(`Found ${data.count} pre-imported activities`);
+                console.log(`Found ${data.count} pre-imported activities (exported: ${data.exportDate})`);
 
-                // Check if already imported
+                // Check if we need to reimport based on export date or count
                 const existingCount = await this.db.getActivityCount();
-                if (existingCount < data.count) {
-                    console.log('Importing activities to IndexedDB...');
+                const lastImportDate = localStorage.getItem('lastImportDate');
+
+                // Reimport if: server has newer export OR server has more activities
+                const serverExportDate = data.exportDate || '';
+                const needsReimport = !lastImportDate ||
+                    serverExportDate > lastImportDate ||
+                    existingCount < data.count;
+
+                if (needsReimport) {
+                    console.log(`Reimporting: lastImport=${lastImportDate}, serverExport=${serverExportDate}, existing=${existingCount}, new=${data.count}`);
+                    // Clear existing activities and reimport all
+                    await this.db.clearActivities();
                     for (const activity of data.activities) {
                         await this.db.addActivity(activity);
                     }
+                    localStorage.setItem('lastImportDate', serverExportDate);
                     console.log('Import complete!');
+                } else {
+                    console.log('Activities already up to date');
                 }
             }
         } catch (e) {
-            console.log('No pre-imported activities found');
+            console.log('No pre-imported activities found:', e.message);
         }
     }
+
 
     async loadOuraData() {
         try {
