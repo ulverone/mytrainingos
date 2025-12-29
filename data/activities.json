@@ -1,5 +1,5 @@
 {
-  "exportDate": "2025-12-29T05:33:05.241102",
+  "exportDate": "2025-12-29T13:43:10.986808",
   "count": 505,
   "activities": [
     {
@@ -1804,7 +1804,7 @@
     },
     {
       "id": "20771388936",
-      "sport": "cycling",
+      "sport": "Ciclismo",
       "startTime": "2025-10-23T04:22:10",
       "duration": 1806,
       "distance": 17040.0,
@@ -1812,10 +1812,10 @@
       "maxHR": null,
       "avgPower": 173,
       "normalizedPower": null,
-      "avgSpeed": null,
+      "avgSpeed": 9.437,
       "calories": 357,
       "laps": [],
-      "tss": 0.2,
+      "tss": 24.0,
       "tssType": "TSS",
       "IF": 0.69,
       "filename": "20771388936.fit"
