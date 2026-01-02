@@ -1,7 +1,25 @@
 {
-  "exportDate": "2026-01-01T13:38:56.106016",
-  "count": 509,
+  "exportDate": "2026-01-02T05:30:13.146685",
+  "count": 510,
   "activities": [
+    {
+      "id": "21412623400",
+      "sport": "Corsa",
+      "startTime": "2026-01-01T15:22:42",
+      "duration": 3456,
+      "distance": 11130.0,
+      "avgHR": 129,
+      "maxHR": 153,
+      "avgPower": 377,
+      "normalizedPower": 391,
+      "avgSpeed": 3.220486111111111,
+      "calories": 852,
+      "laps": [],
+      "tss": 72.6,
+      "tssType": "rTSS",
+      "IF": 1.03,
+      "filename": "21412623400.fit"
+    },
     {
       "id": "21410393977",
       "sport": "Nuoto",
@@ -1804,7 +1822,7 @@
     },
     {
       "id": "20792167379",
-      "sport": "cycling",
+      "sport": "Ciclismo",
       "startTime": "2025-10-25T09:06:27",
       "duration": 10371,
       "distance": 68340.0,
@@ -1812,7 +1830,7 @@
       "maxHR": 154,
       "avgPower": 191,
       "normalizedPower": 216,
-      "avgSpeed": null,
+      "avgSpeed": 8.984,
       "calories": 1638,
       "laps": [],
       "tss": 112.5,
@@ -1822,7 +1840,7 @@
     },
     {
       "id": "20782629511",
-      "sport": "training",
+      "sport": "Allenamento",
       "startTime": "2025-10-24T10:18:31",
       "duration": 3175,
       "distance": 0,
@@ -1834,13 +1852,13 @@
       "calories": 298,
       "laps": [],
       "tss": 27.4,
-      "tssType": "TSS",
+      "tssType": "hrTSS",
       "IF": null,
       "filename": "20782629511.fit"
     },
     {
       "id": "20780447565",
-      "sport": "running",
+      "sport": "Corsa",
       "startTime": "2025-10-24T04:20:01",
       "duration": 2813,
       "distance": 9190.0,
@@ -1848,12 +1866,12 @@
       "maxHR": 147,
       "avgPower": 373,
       "normalizedPower": 374,
-      "avgSpeed": null,
+      "avgSpeed": 3.2669747600426593,
       "calories": 747,
       "laps": [],
-      "tss": 1.7,
-      "tssType": "TSS",
-      "IF": 1.5,
+      "tss": 60.8,
+      "tssType": "rTSS",
+      "IF": 0.98,
       "filename": "20780447565.fit"
     },
     {
