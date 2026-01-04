@@ -1,5 +1,5 @@
 {
-  "exportDate": "2026-01-03T13:34:49.344546",
+  "exportDate": "2026-01-04T05:30:29.555419",
   "count": 513,
   "activities": [
     {
@@ -1804,7 +1804,7 @@
     },
     {
       "id": "20820496787",
-      "sport": "training",
+      "sport": "Allenamento",
       "startTime": "2025-10-28T11:17:35",
       "duration": 3163,
       "distance": 0,
@@ -1816,7 +1816,7 @@
       "calories": 221,
       "laps": [],
       "tss": 22.2,
-      "tssType": "TSS",
+      "tssType": "hrTSS",
       "IF": null,
       "filename": "20820496787.fit"
     },
