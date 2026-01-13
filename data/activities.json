@@ -1,7 +1,25 @@
 {
-  "exportDate": "2026-01-13T05:30:36.919382",
-  "count": 524,
+  "exportDate": "2026-01-13T13:46:46.893165",
+  "count": 525,
   "activities": [
+    {
+      "id": "21529538545",
+      "sport": "Ciclismo",
+      "startTime": "2026-01-13T05:11:16",
+      "duration": 2756,
+      "distance": 27200.0,
+      "avgHR": 121,
+      "maxHR": 141,
+      "avgPower": 191,
+      "normalizedPower": null,
+      "avgSpeed": 9.869,
+      "calories": 594,
+      "laps": [],
+      "tss": 44.7,
+      "tssType": "TSS",
+      "IF": 0.76,
+      "filename": "21529538545.fit"
+    },
     {
       "id": "21525012418",
       "sport": "Nuoto",
@@ -1804,7 +1822,7 @@
     },
     {
       "id": "20888305434",
-      "sport": "training",
+      "sport": "Allenamento",
       "startTime": "2025-11-04T11:27:25",
       "duration": 2649,
       "distance": 0,
@@ -1816,7 +1834,7 @@
       "calories": 241,
       "laps": [],
       "tss": 19.5,
-      "tssType": "TSS",
+      "tssType": "hrTSS",
       "IF": null,
       "filename": "20888305434.fit"
     },
