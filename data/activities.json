@@ -1,7 +1,25 @@
 {
-  "exportDate": "2026-01-12T13:47:40.627727",
-  "count": 523,
+  "exportDate": "2026-01-13T05:30:36.919382",
+  "count": 524,
   "activities": [
+    {
+      "id": "21525012418",
+      "sport": "Nuoto",
+      "startTime": "2026-01-12T11:27:46",
+      "duration": 2131,
+      "distance": 1550.0,
+      "avgHR": 115,
+      "maxHR": 153,
+      "avgPower": null,
+      "normalizedPower": null,
+      "avgSpeed": 0.7273580478648521,
+      "calories": 366,
+      "laps": [],
+      "tss": 39.4,
+      "tssType": "sTSS",
+      "IF": null,
+      "filename": "21525012418.fit"
+    },
     {
       "id": "21510962251",
       "sport": "Corsa",
