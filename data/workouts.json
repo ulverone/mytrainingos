@@ -1,19 +1,13 @@
 {
-  "last_updated": "2026-01-16T05:29:22.034162",
-  "total_activities": 530,
+  "last_updated": "2026-01-16T13:43:06.180352",
+  "total_activities": 531,
   "performance": {
-    "ctl": 66.8,
-    "atl": 90.4,
-    "tsb": -23.6,
+    "ctl": 66.6,
+    "atl": 83.2,
+    "tsb": -16.6,
     "form": "Fatigued"
   },
   "history": [
-    {
-      "date": "2025-10-18",
-      "ctl": 81.1,
-      "atl": 90.9,
-      "tsb": -9.8
-    },
     {
       "date": "2025-10-19",
       "ctl": 77.3,
@@ -547,10 +541,15 @@
       "ctl": 66.8,
       "atl": 90.4,
       "tsb": -23.6
+    },
+    {
+      "date": "2026-01-16",
+      "ctl": 66.6,
+      "atl": 83.2,
+      "tsb": -16.6
     }
   ],
   "daily_tss": {
-    "2025-12-01": 33.0,
     "2025-12-02": 30.9,
     "2025-12-03": 45.5,
     "2025-12-04": 25.900000000000002,
@@ -591,9 +590,28 @@
     "2026-01-12": 39.4,
     "2026-01-13": 70.5,
     "2026-01-14": 125.7,
-    "2026-01-15": 70.6
+    "2026-01-15": 70.6,
+    "2026-01-16": 61.8
   },
   "activities": [
+    {
+      "sport": "Nuoto",
+      "start_time": "2026-01-16T11:22:03",
+      "duration": 2778,
+      "distance": 2.15,
+      "calories": 580,
+      "avg_hr": 127,
+      "max_hr": 164,
+      "avg_power": null,
+      "max_power": null,
+      "normalized_power": null,
+      "tss": 61.8,
+      "elevation_gain": 0,
+      "avg_cadence": 30,
+      "avg_speed": 0.7739380849532037,
+      "tssType": "sTSS",
+      "id": "21564723008"
+    },
     {
       "sport": "Allenamento",
       "start_time": "2026-01-15T11:24:43",
@@ -2229,22 +2247,6 @@
       "elevation_gain": 38,
       "avg_cadence": 84,
       "id": "20936695738"
-    },
-    {
-      "sport": "cycling",
-      "start_time": "2025-11-08T09:49:15",
-      "duration": 10489,
-      "distance": 90.26,
-      "calories": 2157,
-      "avg_hr": 132,
-      "max_hr": 150,
-      "avg_power": 188,
-      "max_power": 714,
-      "normalized_power": 201,
-      "tss": 131.2,
-      "elevation_gain": 175,
-      "avg_cadence": 77,
-      "id": "20928094360"
     }
   ]
 }
