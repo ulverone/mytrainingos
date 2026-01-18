@@ -1,7 +1,25 @@
 {
-  "exportDate": "2026-01-17T13:35:02.971050",
-  "count": 531,
+  "exportDate": "2026-01-18T05:28:56.165050",
+  "count": 532,
   "activities": [
+    {
+      "id": "21576096773",
+      "sport": "Ciclismo",
+      "startTime": "2026-01-17T11:31:58",
+      "duration": 5181,
+      "distance": 44820.0,
+      "avgHR": 124,
+      "maxHR": 154,
+      "avgPower": 214,
+      "normalizedPower": null,
+      "avgSpeed": 8.651,
+      "calories": 1111,
+      "laps": [],
+      "tss": 105.5,
+      "tssType": "TSS",
+      "IF": 0.86,
+      "filename": "21576096773.fit"
+    },
     {
       "id": "21564723008",
       "sport": "Nuoto",

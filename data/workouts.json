@@ -1,19 +1,13 @@
 {
-  "last_updated": "2026-01-17T13:35:02.967731",
-  "total_activities": 531,
+  "last_updated": "2026-01-18T05:28:56.161789",
+  "total_activities": 532,
   "performance": {
-    "ctl": 66.6,
-    "atl": 83.2,
-    "tsb": -16.6,
+    "ctl": 68.4,
+    "atl": 88.8,
+    "tsb": -20.4,
     "form": "Fatigued"
   },
   "history": [
-    {
-      "date": "2025-10-19",
-      "ctl": 77.3,
-      "atl": 68.1,
-      "tsb": 9.2
-    },
     {
       "date": "2025-10-20",
       "ctl": 76.8,
@@ -547,10 +541,15 @@
       "ctl": 66.6,
       "atl": 83.2,
       "tsb": -16.6
+    },
+    {
+      "date": "2026-01-17",
+      "ctl": 68.4,
+      "atl": 88.8,
+      "tsb": -20.4
     }
   ],
   "daily_tss": {
-    "2025-12-02": 30.9,
     "2025-12-03": 45.5,
     "2025-12-04": 25.900000000000002,
     "2025-12-05": 47.0,
@@ -591,9 +590,28 @@
     "2026-01-13": 70.5,
     "2026-01-14": 125.7,
     "2026-01-15": 70.6,
-    "2026-01-16": 61.8
+    "2026-01-16": 61.8,
+    "2026-01-17": 105.5
   },
   "activities": [
+    {
+      "sport": "Ciclismo",
+      "start_time": "2026-01-17T11:31:58",
+      "duration": 5181,
+      "distance": 44.82,
+      "calories": 1111,
+      "avg_hr": 124,
+      "max_hr": 154,
+      "avg_power": 214,
+      "max_power": 773,
+      "normalized_power": null,
+      "tss": 105.5,
+      "elevation_gain": 326,
+      "avg_cadence": 82,
+      "avg_speed": 8.651,
+      "tssType": "TSS",
+      "id": "21576096773"
+    },
     {
       "sport": "Nuoto",
       "start_time": "2026-01-16T11:22:03",
@@ -2231,22 +2249,6 @@
       "elevation_gain": 0,
       "avg_cadence": 28,
       "id": "20946814950"
-    },
-    {
-      "sport": "running",
-      "start_time": "2025-11-09T09:33:18",
-      "duration": 4964,
-      "distance": 16.06,
-      "calories": 1257,
-      "avg_hr": 136,
-      "max_hr": 157,
-      "avg_power": 380,
-      "max_power": 541,
-      "normalized_power": 384,
-      "tss": 3.3,
-      "elevation_gain": 38,
-      "avg_cadence": 84,
-      "id": "20936695738"
     }
   ]
 }
