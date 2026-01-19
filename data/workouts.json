@@ -1,19 +1,13 @@
 {
-  "last_updated": "2026-01-18T13:35:12.922039",
-  "total_activities": 532,
+  "last_updated": "2026-01-19T05:37:14.174614",
+  "total_activities": 533,
   "performance": {
-    "ctl": 68.6,
-    "atl": 88.8,
-    "tsb": -20.2,
+    "ctl": 69.3,
+    "atl": 87.6,
+    "tsb": -18.3,
     "form": "Fatigued"
   },
   "history": [
-    {
-      "date": "2025-10-20",
-      "ctl": 76.8,
-      "atl": 67.5,
-      "tsb": 9.2
-    },
     {
       "date": "2025-10-21",
       "ctl": 75.4,
@@ -547,10 +541,15 @@
       "ctl": 68.6,
       "atl": 88.8,
       "tsb": -20.2
+    },
+    {
+      "date": "2026-01-18",
+      "ctl": 69.3,
+      "atl": 87.6,
+      "tsb": -18.3
     }
   ],
   "daily_tss": {
-    "2025-12-03": 45.5,
     "2025-12-04": 25.900000000000002,
     "2025-12-05": 47.0,
     "2025-12-06": 2.3,
@@ -591,9 +590,28 @@
     "2026-01-14": 125.7,
     "2026-01-15": 70.6,
     "2026-01-16": 61.8,
-    "2026-01-17": 105.5
+    "2026-01-17": 105.5,
+    "2026-01-18": 84.0
   },
   "activities": [
+    {
+      "sport": "Corsa",
+      "start_time": "2026-01-18T11:15:47",
+      "duration": 3670,
+      "distance": 12.34,
+      "calories": 960,
+      "avg_hr": 139,
+      "max_hr": 165,
+      "avg_power": 395,
+      "max_power": 615,
+      "normalized_power": 410,
+      "tss": 84.0,
+      "elevation_gain": 28,
+      "avg_cadence": 84,
+      "avg_speed": 3.362397820163488,
+      "tssType": "rTSS",
+      "id": "21586145925"
+    },
     {
       "sport": "Ciclismo",
       "start_time": "2026-01-17T11:31:58",
@@ -2233,22 +2251,6 @@
       "elevation_gain": 0,
       "avg_cadence": 78,
       "id": "20953651248"
-    },
-    {
-      "sport": "swimming",
-      "start_time": "2025-11-10T11:22:09",
-      "duration": 3027,
-      "distance": 2.25,
-      "calories": 508,
-      "avg_hr": 117,
-      "max_hr": 157,
-      "avg_power": null,
-      "max_power": null,
-      "normalized_power": null,
-      "tss": 42.3,
-      "elevation_gain": 0,
-      "avg_cadence": 28,
-      "id": "20946814950"
     }
   ]
 }

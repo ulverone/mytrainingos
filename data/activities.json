@@ -1,7 +1,25 @@
 {
-  "exportDate": "2026-01-18T13:35:12.925081",
-  "count": 532,
+  "exportDate": "2026-01-19T05:37:14.177978",
+  "count": 533,
   "activities": [
+    {
+      "id": "21586145925",
+      "sport": "Corsa",
+      "startTime": "2026-01-18T11:15:47",
+      "duration": 3670,
+      "distance": 12340.0,
+      "avgHR": 139,
+      "maxHR": 165,
+      "avgPower": 395,
+      "normalizedPower": 410,
+      "avgSpeed": 3.362397820163488,
+      "calories": 960,
+      "laps": [],
+      "tss": 84.0,
+      "tssType": "rTSS",
+      "IF": 1.08,
+      "filename": "21586145925.fit"
+    },
     {
       "id": "21576096773",
       "sport": "Ciclismo",
