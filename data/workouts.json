@@ -1,19 +1,13 @@
 {
-  "last_updated": "2026-01-23T05:32:48.139551",
-  "total_activities": 540,
+  "last_updated": "2026-01-23T13:48:36.441117",
+  "total_activities": 541,
   "performance": {
-    "ctl": 72.1,
-    "atl": 87.1,
-    "tsb": -15.0,
+    "ctl": 72.2,
+    "atl": 83.7,
+    "tsb": -11.5,
     "form": "Fatigued"
   },
   "history": [
-    {
-      "date": "2025-10-25",
-      "ctl": 77.8,
-      "atl": 82.3,
-      "tsb": -4.5
-    },
     {
       "date": "2025-10-26",
       "ctl": 79.7,
@@ -547,10 +541,15 @@
       "ctl": 72.1,
       "atl": 87.1,
       "tsb": -15.0
+    },
+    {
+      "date": "2026-01-23",
+      "ctl": 72.2,
+      "atl": 83.7,
+      "tsb": -11.5
     }
   ],
   "daily_tss": {
-    "2025-12-08": 34.7,
     "2025-12-09": 18.099999999999998,
     "2025-12-10": 2.4,
     "2025-12-11": 25.6,
@@ -591,9 +590,28 @@
     "2026-01-19": 50.7,
     "2026-01-20": 85.1,
     "2026-01-21": 106.8,
-    "2026-01-22": 88.3
+    "2026-01-22": 88.3,
+    "2026-01-23": 73.4
   },
   "activities": [
+    {
+      "sport": "Nuoto",
+      "start_time": "2026-01-23T11:19:47",
+      "duration": 3196,
+      "distance": 2.5,
+      "calories": 755,
+      "avg_hr": 142,
+      "max_hr": 180,
+      "avg_power": null,
+      "max_power": null,
+      "normalized_power": null,
+      "tss": 73.4,
+      "elevation_gain": 0,
+      "avg_cadence": 30,
+      "avg_speed": 0.7822277847309136,
+      "tssType": "sTSS",
+      "id": "21638964035"
+    },
     {
       "sport": "Allenamento",
       "start_time": "2026-01-22T11:23:28",
@@ -2249,22 +2267,6 @@
       "elevation_gain": 0,
       "avg_cadence": 28,
       "id": "20985464366"
-    },
-    {
-      "sport": "running",
-      "start_time": "2025-11-14T07:38:32",
-      "duration": 3137,
-      "distance": 10.74,
-      "calories": 822,
-      "avg_hr": 137,
-      "max_hr": 147,
-      "avg_power": 396,
-      "max_power": 475,
-      "normalized_power": 397,
-      "tss": 2.2,
-      "elevation_gain": 17,
-      "avg_cadence": 84,
-      "id": "20984463229"
     }
   ]
 }
