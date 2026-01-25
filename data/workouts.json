@@ -1,19 +1,13 @@
 {
-  "last_updated": "2026-01-24T13:37:02.121416",
-  "total_activities": 541,
+  "last_updated": "2026-01-25T05:33:55.009756",
+  "total_activities": 542,
   "performance": {
-    "ctl": 72.3,
-    "atl": 83.7,
-    "tsb": -11.4,
+    "ctl": 76.7,
+    "atl": 104.8,
+    "tsb": -28.1,
     "form": "Fatigued"
   },
   "history": [
-    {
-      "date": "2025-10-26",
-      "ctl": 79.7,
-      "atl": 91.8,
-      "tsb": -12.0
-    },
     {
       "date": "2025-10-27",
       "ctl": 78.6,
@@ -547,10 +541,15 @@
       "ctl": 72.3,
       "atl": 83.7,
       "tsb": -11.4
+    },
+    {
+      "date": "2026-01-24",
+      "ctl": 76.7,
+      "atl": 104.8,
+      "tsb": -28.1
     }
   ],
   "daily_tss": {
-    "2025-12-09": 18.099999999999998,
     "2025-12-10": 2.4,
     "2025-12-11": 25.6,
     "2025-12-12": 47.9,
@@ -591,9 +590,28 @@
     "2026-01-20": 85.1,
     "2026-01-21": 106.8,
     "2026-01-22": 88.3,
-    "2026-01-23": 73.4
+    "2026-01-23": 73.4,
+    "2026-01-24": 168.1
   },
   "activities": [
+    {
+      "sport": "Ciclismo",
+      "start_time": "2026-01-24T10:29:01",
+      "duration": 8416,
+      "distance": 80.44,
+      "calories": 1840,
+      "avg_hr": 125,
+      "max_hr": 141,
+      "avg_power": 212,
+      "max_power": 288,
+      "normalized_power": null,
+      "tss": 168.1,
+      "elevation_gain": 0,
+      "avg_cadence": 74,
+      "avg_speed": 10.368,
+      "tssType": "TSS",
+      "id": "21649307836"
+    },
     {
       "sport": "Nuoto",
       "start_time": "2026-01-23T11:19:47",
@@ -2251,22 +2269,6 @@
       "elevation_gain": 218,
       "avg_cadence": 73,
       "id": "20995904289"
-    },
-    {
-      "sport": "swimming",
-      "start_time": "2025-11-14T10:10:04",
-      "duration": 3039,
-      "distance": 2.15,
-      "calories": 551,
-      "avg_hr": 119,
-      "max_hr": 147,
-      "avg_power": null,
-      "max_power": null,
-      "normalized_power": null,
-      "tss": 43.9,
-      "elevation_gain": 0,
-      "avg_cadence": 28,
-      "id": "20985464366"
     }
   ]
 }
