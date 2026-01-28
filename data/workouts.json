@@ -1,25 +1,13 @@
 {
-  "last_updated": "2026-01-27T13:51:30.932385",
-  "total_activities": 543,
+  "last_updated": "2026-01-28T05:33:31.711613",
+  "total_activities": 545,
   "performance": {
-    "ctl": 77.5,
-    "atl": 101.6,
-    "tsb": -24.2,
-    "form": "Fatigued"
+    "ctl": 74.7,
+    "atl": 79.9,
+    "tsb": -5.3,
+    "form": "Optimal"
   },
   "history": [
-    {
-      "date": "2025-10-28",
-      "ctl": 77.2,
-      "atl": 74.0,
-      "tsb": 3.2
-    },
-    {
-      "date": "2025-10-29",
-      "ctl": 78.8,
-      "atl": 83.2,
-      "tsb": -4.5
-    },
     {
       "date": "2025-10-30",
       "ctl": 77.0,
@@ -547,10 +535,21 @@
       "ctl": 77.5,
       "atl": 101.6,
       "tsb": -24.2
+    },
+    {
+      "date": "2026-01-26",
+      "ctl": 73.9,
+      "atl": 76.2,
+      "tsb": -2.4
+    },
+    {
+      "date": "2026-01-27",
+      "ctl": 74.7,
+      "atl": 79.9,
+      "tsb": -5.3
     }
   ],
   "daily_tss": {
-    "2025-12-11": 25.6,
     "2025-12-12": 47.9,
     "2025-12-13": 0.4,
     "2025-12-15": 38.0,
@@ -591,9 +590,46 @@
     "2026-01-22": 88.3,
     "2026-01-23": 73.4,
     "2026-01-24": 168.1,
-    "2026-01-25": 92.1
+    "2026-01-25": 92.1,
+    "2026-01-27": 91.0
   },
   "activities": [
+    {
+      "sport": "Allenamento",
+      "start_time": "2026-01-27T11:20:45",
+      "duration": 3033,
+      "distance": 0,
+      "calories": 329,
+      "avg_hr": 93,
+      "max_hr": 153,
+      "avg_power": null,
+      "max_power": null,
+      "normalized_power": null,
+      "tss": 26.8,
+      "elevation_gain": 0,
+      "avg_cadence": null,
+      "avg_speed": null,
+      "tssType": "hrTSS",
+      "id": "21679185679"
+    },
+    {
+      "sport": "Ciclismo",
+      "start_time": "2026-01-27T05:02:49",
+      "duration": 3182,
+      "distance": 30.4,
+      "calories": 705,
+      "avg_hr": 133,
+      "max_hr": 153,
+      "avg_power": 213,
+      "max_power": 608,
+      "normalized_power": null,
+      "tss": 64.2,
+      "elevation_gain": 0,
+      "avg_cadence": 84,
+      "avg_speed": 10.268,
+      "tssType": "TSS",
+      "id": "21676451629"
+    },
     {
       "sport": "Corsa",
       "start_time": "2026-01-25T08:23:19",
@@ -2239,38 +2275,6 @@
       "elevation_gain": 0,
       "avg_cadence": 27,
       "id": "21013465537"
-    },
-    {
-      "sport": "running",
-      "start_time": "2025-11-16T12:21:51",
-      "duration": 429,
-      "distance": 1.43,
-      "calories": 109,
-      "avg_hr": 130,
-      "max_hr": 138,
-      "avg_power": 380,
-      "max_power": 410,
-      "normalized_power": 384,
-      "tss": 0.3,
-      "elevation_gain": 2,
-      "avg_cadence": 86,
-      "id": "21004895968"
-    },
-    {
-      "sport": "running",
-      "start_time": "2025-11-16T10:54:56",
-      "duration": 4958,
-      "distance": 17.18,
-      "calories": 1316,
-      "avg_hr": 141,
-      "max_hr": 152,
-      "avg_power": 409,
-      "max_power": 588,
-      "normalized_power": 411,
-      "tss": 3.7,
-      "elevation_gain": 46,
-      "avg_cadence": 85,
-      "id": "21004813080"
     }
   ]
 }
