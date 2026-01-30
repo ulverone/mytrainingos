@@ -1,25 +1,13 @@
 {
-  "last_updated": "2026-01-30T05:51:18.368510",
-  "total_activities": 547,
+  "last_updated": "2026-01-30T14:01:07.463177",
+  "total_activities": 548,
   "performance": {
-    "ctl": 75.0,
-    "atl": 78.8,
-    "tsb": -3.8,
+    "ctl": 71.8,
+    "atl": 64.1,
+    "tsb": 7.7,
     "form": "Optimal"
   },
   "history": [
-    {
-      "date": "2025-10-31",
-      "ctl": 77.0,
-      "atl": 73.7,
-      "tsb": 3.3
-    },
-    {
-      "date": "2025-11-01",
-      "ctl": 78.4,
-      "atl": 82.0,
-      "tsb": -3.6
-    },
     {
       "date": "2025-11-02",
       "ctl": 78.6,
@@ -547,10 +535,21 @@
       "ctl": 75.0,
       "atl": 78.8,
       "tsb": -3.8
+    },
+    {
+      "date": "2026-01-29",
+      "ctl": 71.5,
+      "atl": 59.1,
+      "tsb": 12.4
+    },
+    {
+      "date": "2026-01-30",
+      "ctl": 71.8,
+      "atl": 64.1,
+      "tsb": 7.7
     }
   ],
   "daily_tss": {
-    "2025-12-13": 0.4,
     "2025-12-15": 38.0,
     "2025-12-16": 20.4,
     "2025-12-17": 44.9,
@@ -591,9 +590,28 @@
     "2026-01-24": 168.1,
     "2026-01-25": 92.1,
     "2026-01-27": 91.0,
-    "2026-01-28": 75.4
+    "2026-01-28": 75.4,
+    "2026-01-30": 79.1
   },
   "activities": [
+    {
+      "sport": "Nuoto",
+      "start_time": "2026-01-30T11:26:11",
+      "duration": 3042,
+      "distance": 2.48,
+      "calories": 505,
+      "avg_hr": 116,
+      "max_hr": 131,
+      "avg_power": null,
+      "max_power": null,
+      "normalized_power": null,
+      "tss": 79.1,
+      "elevation_gain": 0,
+      "avg_cadence": 29,
+      "avg_speed": 0.8152531229454306,
+      "tssType": "sTSS",
+      "id": "21709840451"
+    },
     {
       "sport": "Nuoto",
       "start_time": "2026-01-28T11:25:59",
@@ -2263,22 +2281,6 @@
       "elevation_gain": 16,
       "avg_cadence": 87,
       "id": "21030132289"
-    },
-    {
-      "sport": "training",
-      "start_time": "2025-11-18T11:23:38",
-      "duration": 2981,
-      "distance": 0,
-      "calories": 207,
-      "avg_hr": 81,
-      "max_hr": 106,
-      "avg_power": null,
-      "max_power": null,
-      "normalized_power": null,
-      "tss": 20.0,
-      "elevation_gain": 0,
-      "avg_cadence": null,
-      "id": "21025693043"
     }
   ]
 }
