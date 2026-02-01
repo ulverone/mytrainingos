@@ -1,19 +1,13 @@
 {
-  "last_updated": "2026-02-01T06:06:46.000600",
-  "total_activities": 549,
+  "last_updated": "2026-02-01T13:48:49.706537",
+  "total_activities": 550,
   "performance": {
-    "ctl": 74.5,
-    "atl": 79.9,
-    "tsb": -5.4,
-    "form": "Optimal"
+    "ctl": 75.9,
+    "atl": 86.0,
+    "tsb": -10.1,
+    "form": "Fatigued"
   },
   "history": [
-    {
-      "date": "2025-11-03",
-      "ctl": 77.5,
-      "atl": 75.3,
-      "tsb": 2.1
-    },
     {
       "date": "2025-11-04",
       "ctl": 76.8,
@@ -547,10 +541,15 @@
       "ctl": 74.5,
       "atl": 79.9,
       "tsb": -5.4
+    },
+    {
+      "date": "2026-02-01",
+      "ctl": 75.9,
+      "atl": 86.0,
+      "tsb": -10.1
     }
   ],
   "daily_tss": {
-    "2025-12-16": 20.4,
     "2025-12-17": 44.9,
     "2025-12-18": 21.0,
     "2025-12-19": 46.7,
@@ -591,9 +590,28 @@
     "2026-01-27": 91.0,
     "2026-01-28": 75.4,
     "2026-01-30": 79.1,
-    "2026-01-31": 127.3
+    "2026-01-31": 127.3,
+    "2026-02-01": 104.2
   },
   "activities": [
+    {
+      "sport": "Corsa",
+      "start_time": "2026-02-01T08:21:20",
+      "duration": 4034,
+      "distance": 14.41,
+      "calories": 1085,
+      "avg_hr": 141,
+      "max_hr": 151,
+      "avg_power": 429,
+      "max_power": 759,
+      "normalized_power": 429,
+      "tss": 104.2,
+      "elevation_gain": 29,
+      "avg_cadence": 84,
+      "avg_speed": 3.572136836886465,
+      "tssType": "rTSS",
+      "id": "21727723967"
+    },
     {
       "sport": "Ciclismo",
       "start_time": "2026-01-31T11:02:49",
@@ -2267,22 +2285,6 @@
       "elevation_gain": 0,
       "avg_cadence": 67,
       "id": "21039476716"
-    },
-    {
-      "sport": "swimming",
-      "start_time": "2025-11-19T11:25:00",
-      "duration": 2521,
-      "distance": 1.88,
-      "calories": 569,
-      "avg_hr": 135,
-      "max_hr": 172,
-      "avg_power": null,
-      "max_power": null,
-      "normalized_power": null,
-      "tss": 46.9,
-      "elevation_gain": 0,
-      "avg_cadence": 29,
-      "id": "21032616897"
     }
   ]
 }
