@@ -1,5 +1,5 @@
 {
-  "exportDate": "2026-02-01T13:48:49.710182",
+  "exportDate": "2026-02-02T06:09:43.794263",
   "count": 550,
   "activities": [
     {
@@ -1804,7 +1804,7 @@
     },
     {
       "id": "21032616897",
-      "sport": "swimming",
+      "sport": "Nuoto",
       "startTime": "2025-11-19T11:25:00",
       "duration": 2521,
       "distance": 1880.0,
@@ -1812,11 +1812,11 @@
       "maxHR": 172,
       "avgPower": null,
       "normalizedPower": null,
-      "avgSpeed": null,
+      "avgSpeed": 0.745735819119397,
       "calories": 569,
       "laps": [],
-      "tss": 46.9,
-      "tssType": "TSS",
+      "tss": 50.2,
+      "tssType": "sTSS",
       "IF": null,
       "filename": "21032616897.fit"
     },
