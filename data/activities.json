@@ -1,7 +1,25 @@
 {
-  "exportDate": "2026-02-04T05:53:25.616412",
-  "count": 551,
+  "exportDate": "2026-02-04T14:08:48.242594",
+  "count": 552,
   "activities": [
+    {
+      "id": "21761119907",
+      "sport": "Nuoto",
+      "startTime": "2026-02-04T11:25:39",
+      "duration": 2832,
+      "distance": 1850.0,
+      "avgHR": 109,
+      "maxHR": 141,
+      "avgPower": null,
+      "normalizedPower": null,
+      "avgSpeed": 0.6532485875706214,
+      "calories": 366,
+      "laps": [],
+      "tss": 37.9,
+      "tssType": "sTSS",
+      "IF": null,
+      "filename": "21761119907.fit"
+    },
     {
       "id": "21750123584",
       "sport": "Allenamento",
