@@ -1,10 +1,10 @@
 {
-  "last_updated": "2026-02-10T06:19:33.851266",
-  "total_activities": 559,
+  "last_updated": "2026-02-10T14:28:52.426791",
+  "total_activities": 560,
   "performance": {
-    "ctl": 69.4,
-    "atl": 65.7,
-    "tsb": 3.7,
+    "ctl": 70.6,
+    "atl": 72.1,
+    "tsb": -1.5,
     "form": "Optimal"
   },
   "history": [
@@ -544,9 +544,9 @@
     },
     {
       "date": "2026-02-10",
-      "ctl": 69.4,
-      "atl": 65.7,
-      "tsb": 3.7
+      "ctl": 70.6,
+      "atl": 72.1,
+      "tsb": -1.5
     }
   ],
   "daily_tss": {
@@ -591,9 +591,27 @@
     "2026-02-07": 108.2,
     "2026-02-08": 113.0,
     "2026-02-09": 57.1,
-    "2026-02-10": 61.3
+    "2026-02-10": 87.0
   },
   "activities": [
+    {
+      "sport": "Allenamento",
+      "start_time": "2026-02-10T11:20:31",
+      "duration": 3257,
+      "distance": 0,
+      "calories": 301,
+      "avg_hr": 88,
+      "max_hr": 129,
+      "avg_power": null,
+      "max_power": null,
+      "normalized_power": null,
+      "tss": 25.7,
+      "elevation_gain": 0,
+      "avg_cadence": null,
+      "avg_speed": null,
+      "tssType": "hrTSS",
+      "id": "21823153340"
+    },
     {
       "sport": "Ciclismo",
       "start_time": "2026-02-10T04:48:58",
@@ -2287,22 +2305,6 @@
       "elevation_gain": 0,
       "avg_cadence": 64,
       "id": "21102300776"
-    },
-    {
-      "sport": "running",
-      "start_time": "2025-11-26T05:09:43",
-      "duration": 3166,
-      "distance": 10.25,
-      "calories": 814,
-      "avg_hr": 138,
-      "max_hr": 162,
-      "avg_power": 360,
-      "max_power": 572,
-      "normalized_power": 396,
-      "tss": 2.2,
-      "elevation_gain": 11,
-      "avg_cadence": 85,
-      "id": "21093133374"
     }
   ]
 }
