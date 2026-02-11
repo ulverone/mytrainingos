@@ -1,19 +1,13 @@
 {
-  "last_updated": "2026-02-11T06:16:42.909937",
-  "total_activities": 560,
+  "last_updated": "2026-02-11T14:23:21.258733",
+  "total_activities": 561,
   "performance": {
-    "ctl": 70.7,
-    "atl": 72.1,
-    "tsb": -1.4,
+    "ctl": 69.6,
+    "atl": 65.8,
+    "tsb": 3.8,
     "form": "Optimal"
   },
   "history": [
-    {
-      "date": "2025-11-13",
-      "ctl": 82.9,
-      "atl": 93.9,
-      "tsb": -11.0
-    },
     {
       "date": "2025-11-14",
       "ctl": 84.9,
@@ -547,10 +541,15 @@
       "ctl": 70.7,
       "atl": 72.1,
       "tsb": -1.4
+    },
+    {
+      "date": "2026-02-11",
+      "ctl": 69.6,
+      "atl": 65.8,
+      "tsb": 3.8
     }
   ],
   "daily_tss": {
-    "2025-12-24": 2.4,
     "2025-12-26": 80.80000000000001,
     "2025-12-27": 54.4,
     "2025-12-28": 133.9,
@@ -591,9 +590,28 @@
     "2026-02-07": 108.2,
     "2026-02-08": 113.0,
     "2026-02-09": 57.1,
-    "2026-02-10": 87.0
+    "2026-02-10": 87.0,
+    "2026-02-11": 47.0
   },
   "activities": [
+    {
+      "sport": "Nuoto",
+      "start_time": "2026-02-11T11:30:35",
+      "duration": 2142,
+      "distance": 1.65,
+      "calories": 459,
+      "avg_hr": 128,
+      "max_hr": 164,
+      "avg_power": null,
+      "max_power": null,
+      "normalized_power": null,
+      "tss": 47.0,
+      "elevation_gain": 0,
+      "avg_cadence": 32,
+      "avg_speed": 0.7703081232492998,
+      "tssType": "sTSS",
+      "id": "21834199471"
+    },
     {
       "sport": "Allenamento",
       "start_time": "2026-02-10T11:20:31",
@@ -2289,22 +2307,6 @@
       "elevation_gain": 0,
       "avg_cadence": null,
       "id": "21104524553"
-    },
-    {
-      "sport": "cycling",
-      "start_time": "2025-11-27T05:03:03",
-      "duration": 3491,
-      "distance": 35.36,
-      "calories": 832,
-      "avg_hr": 128,
-      "max_hr": 152,
-      "avg_power": 220,
-      "max_power": 336,
-      "normalized_power": null,
-      "tss": 0.8,
-      "elevation_gain": 0,
-      "avg_cadence": 64,
-      "id": "21102300776"
     }
   ]
 }
