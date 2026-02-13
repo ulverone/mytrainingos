@@ -1,7 +1,25 @@
 {
-  "exportDate": "2026-02-13T06:05:20.743766",
-  "count": 563,
+  "exportDate": "2026-02-13T14:08:10.818283",
+  "count": 564,
   "activities": [
+    {
+      "id": "21852875580",
+      "sport": "Ciclismo",
+      "startTime": "2026-02-13T07:21:01",
+      "duration": 3403,
+      "distance": 34040.0,
+      "avgHR": 116,
+      "maxHR": 135,
+      "avgPower": 196,
+      "normalizedPower": null,
+      "avgSpeed": 10.004,
+      "calories": 752,
+      "laps": [],
+      "tss": 58.1,
+      "tssType": "TSS",
+      "IF": 0.78,
+      "filename": "21852875580.fit"
+    },
     {
       "id": "21844667209",
       "sport": "Allenamento",
