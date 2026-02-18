@@ -1,19 +1,13 @@
 {
-  "last_updated": "2026-02-18T06:06:48.909427",
-  "total_activities": 569,
+  "last_updated": "2026-02-18T14:14:28.706738",
+  "total_activities": 570,
   "performance": {
-    "ctl": 75.5,
-    "atl": 87.9,
-    "tsb": -12.4,
-    "form": "Fatigued"
+    "ctl": 72.4,
+    "atl": 67.9,
+    "tsb": 4.5,
+    "form": "Optimal"
   },
   "history": [
-    {
-      "date": "2025-11-20",
-      "ctl": 89.8,
-      "atl": 100.5,
-      "tsb": -10.7
-    },
     {
       "date": "2025-11-21",
       "ctl": 91.4,
@@ -547,10 +541,15 @@
       "ctl": 75.5,
       "atl": 87.9,
       "tsb": -12.4
+    },
+    {
+      "date": "2026-02-18",
+      "ctl": 72.4,
+      "atl": 67.9,
+      "tsb": 4.5
     }
   ],
   "daily_tss": {
-    "2026-01-02": 88.9,
     "2026-01-03": 164.3,
     "2026-01-04": 74.0,
     "2026-01-06": 101.6,
@@ -591,9 +590,28 @@
     "2026-02-14": 152.0,
     "2026-02-15": 129.2,
     "2026-02-16": 67.0,
-    "2026-02-17": 87.80000000000001
+    "2026-02-17": 87.80000000000001,
+    "2026-02-18": 7.8
   },
   "activities": [
+    {
+      "sport": "Nuoto",
+      "start_time": "2026-02-18T11:23:16",
+      "duration": 5121,
+      "distance": 1.62,
+      "calories": 430,
+      "avg_hr": 124,
+      "max_hr": 177,
+      "avg_power": null,
+      "max_power": null,
+      "normalized_power": null,
+      "tss": 7.8,
+      "elevation_gain": 0,
+      "avg_cadence": 31,
+      "avg_speed": 0.3163444639718805,
+      "tssType": "sTSS",
+      "id": "21906532081"
+    },
     {
       "sport": "Allenamento",
       "start_time": "2026-02-17T11:22:53",
@@ -2307,22 +2325,6 @@
       "elevation_gain": 11,
       "avg_cadence": 85,
       "id": "21155271047"
-    },
-    {
-      "sport": "training",
-      "start_time": "2025-12-02T11:21:21",
-      "duration": 3594,
-      "distance": 0,
-      "calories": 375,
-      "avg_hr": 91,
-      "max_hr": 143,
-      "avg_power": null,
-      "max_power": null,
-      "normalized_power": null,
-      "tss": 30.4,
-      "elevation_gain": 0,
-      "avg_cadence": null,
-      "id": "21148245241"
     }
   ]
 }
