@@ -1,19 +1,13 @@
 {
-  "last_updated": "2026-02-19T06:04:57.306514",
-  "total_activities": 570,
+  "last_updated": "2026-02-19T14:16:02.539790",
+  "total_activities": 572,
   "performance": {
-    "ctl": 72.4,
-    "atl": 67.9,
-    "tsb": 4.5,
+    "ctl": 71.3,
+    "atl": 63.3,
+    "tsb": 8.0,
     "form": "Optimal"
   },
   "history": [
-    {
-      "date": "2025-11-21",
-      "ctl": 91.4,
-      "atl": 106.7,
-      "tsb": -15.2
-    },
     {
       "date": "2025-11-22",
       "ctl": 96.4,
@@ -547,10 +541,15 @@
       "ctl": 72.4,
       "atl": 67.9,
       "tsb": 4.5
+    },
+    {
+      "date": "2026-02-19",
+      "ctl": 71.3,
+      "atl": 63.3,
+      "tsb": 8.0
     }
   ],
   "daily_tss": {
-    "2026-01-03": 164.3,
     "2026-01-04": 74.0,
     "2026-01-06": 101.6,
     "2026-01-07": 111.80000000000001,
@@ -591,9 +590,46 @@
     "2026-02-15": 129.2,
     "2026-02-16": 67.0,
     "2026-02-17": 87.80000000000001,
-    "2026-02-18": 7.8
+    "2026-02-18": 7.8,
+    "2026-02-19": 49.6
   },
   "activities": [
+    {
+      "sport": "Allenamento",
+      "start_time": "2026-02-19T11:25:35",
+      "duration": 3158,
+      "distance": 0,
+      "calories": 265,
+      "avg_hr": 86,
+      "max_hr": 115,
+      "avg_power": null,
+      "max_power": null,
+      "normalized_power": null,
+      "tss": 23.8,
+      "elevation_gain": 0,
+      "avg_cadence": null,
+      "avg_speed": null,
+      "tssType": "hrTSS",
+      "id": "21916754113"
+    },
+    {
+      "sport": "Corsa",
+      "start_time": "2026-02-19T05:43:11",
+      "duration": 2309,
+      "distance": 5.42,
+      "calories": 575,
+      "avg_hr": 138,
+      "max_hr": 164,
+      "avg_power": 301,
+      "max_power": 443,
+      "normalized_power": 314,
+      "tss": 25.8,
+      "elevation_gain": 0,
+      "avg_cadence": 80,
+      "avg_speed": 2.3473365093113903,
+      "tssType": "rTSS",
+      "id": "21914197989"
+    },
     {
       "sport": "Nuoto",
       "start_time": "2026-02-18T11:23:16",
@@ -2293,38 +2329,6 @@
       "elevation_gain": 0,
       "avg_cadence": 65,
       "id": "21164482028"
-    },
-    {
-      "sport": "swimming",
-      "start_time": "2025-12-03T11:26:35",
-      "duration": 2762,
-      "distance": 1.95,
-      "calories": 511,
-      "avg_hr": 124,
-      "max_hr": 152,
-      "avg_power": null,
-      "max_power": null,
-      "normalized_power": null,
-      "tss": 43.3,
-      "elevation_gain": 0,
-      "avg_cadence": 30,
-      "id": "21158541478"
-    },
-    {
-      "sport": "running",
-      "start_time": "2025-12-03T05:09:09",
-      "duration": 3194,
-      "distance": 10.35,
-      "calories": 806,
-      "avg_hr": 136,
-      "max_hr": 157,
-      "avg_power": 365,
-      "max_power": 519,
-      "normalized_power": 393,
-      "tss": 2.2,
-      "elevation_gain": 11,
-      "avg_cadence": 85,
-      "id": "21155271047"
     }
   ]
 }
