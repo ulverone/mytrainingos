@@ -1,19 +1,13 @@
 {
-  "last_updated": "2026-02-20T05:58:28.117389",
-  "total_activities": 572,
+  "last_updated": "2026-02-20T14:07:03.516752",
+  "total_activities": 574,
   "performance": {
-    "ctl": 71.4,
-    "atl": 63.3,
-    "tsb": 8.1,
+    "ctl": 73.5,
+    "atl": 76.6,
+    "tsb": -3.1,
     "form": "Optimal"
   },
   "history": [
-    {
-      "date": "2025-11-22",
-      "ctl": 96.4,
-      "atl": 129.5,
-      "tsb": -33.1
-    },
     {
       "date": "2025-11-23",
       "ctl": 99.0,
@@ -547,10 +541,15 @@
       "ctl": 71.4,
       "atl": 63.3,
       "tsb": 8.1
+    },
+    {
+      "date": "2026-02-20",
+      "ctl": 73.5,
+      "atl": 76.6,
+      "tsb": -3.1
     }
   ],
   "daily_tss": {
-    "2026-01-04": 74.0,
     "2026-01-06": 101.6,
     "2026-01-07": 111.80000000000001,
     "2026-01-08": 109.9,
@@ -591,9 +590,46 @@
     "2026-02-16": 67.0,
     "2026-02-17": 87.80000000000001,
     "2026-02-18": 7.8,
-    "2026-02-19": 49.6
+    "2026-02-19": 49.6,
+    "2026-02-20": 116.60000000000001
   },
   "activities": [
+    {
+      "sport": "Nuoto",
+      "start_time": "2026-02-20T11:24:02",
+      "duration": 2636,
+      "distance": 1.95,
+      "calories": 489,
+      "avg_hr": 123,
+      "max_hr": 154,
+      "avg_power": null,
+      "max_power": null,
+      "normalized_power": null,
+      "tss": 51.2,
+      "elevation_gain": 0,
+      "avg_cadence": 30,
+      "avg_speed": 0.7397572078907435,
+      "tssType": "sTSS",
+      "id": "21926836765"
+    },
+    {
+      "sport": "Ciclismo",
+      "start_time": "2026-02-20T05:09:28",
+      "duration": 3070,
+      "distance": 32.23,
+      "calories": 749,
+      "avg_hr": 126,
+      "max_hr": 145,
+      "avg_power": 219,
+      "max_power": 367,
+      "normalized_power": null,
+      "tss": 65.4,
+      "elevation_gain": 0,
+      "avg_cadence": 74,
+      "avg_speed": 10.498,
+      "tssType": "TSS",
+      "id": "21924279230"
+    },
     {
       "sport": "Allenamento",
       "start_time": "2026-02-19T11:25:35",
@@ -2297,38 +2333,6 @@
       "elevation_gain": 19,
       "avg_cadence": 84,
       "id": "21173069251"
-    },
-    {
-      "sport": "training",
-      "start_time": "2025-12-04T11:15:01",
-      "duration": 3484,
-      "distance": 0,
-      "calories": 273,
-      "avg_hr": 84,
-      "max_hr": 119,
-      "avg_power": null,
-      "max_power": null,
-      "normalized_power": null,
-      "tss": 25.1,
-      "elevation_gain": 0,
-      "avg_cadence": null,
-      "id": "21166765222"
-    },
-    {
-      "sport": "cycling",
-      "start_time": "2025-12-04T04:58:11",
-      "duration": 3608,
-      "distance": 35.74,
-      "calories": 843,
-      "avg_hr": 126,
-      "max_hr": 151,
-      "avg_power": 221,
-      "max_power": 384,
-      "normalized_power": null,
-      "tss": 0.8,
-      "elevation_gain": 0,
-      "avg_cadence": 65,
-      "id": "21164482028"
     }
   ]
 }
