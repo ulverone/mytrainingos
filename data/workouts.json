@@ -1,19 +1,13 @@
 {
-  "last_updated": "2026-02-21T05:47:05.735232",
-  "total_activities": 574,
+  "last_updated": "2026-02-21T13:48:27.359091",
+  "total_activities": 575,
   "performance": {
-    "ctl": 73.6,
-    "atl": 76.6,
-    "tsb": -3.1,
-    "form": "Optimal"
+    "ctl": 77.2,
+    "atl": 95.5,
+    "tsb": -18.2,
+    "form": "Fatigued"
   },
   "history": [
-    {
-      "date": "2025-11-23",
-      "ctl": 99.0,
-      "atl": 135.2,
-      "tsb": -36.2
-    },
     {
       "date": "2025-11-24",
       "ctl": 96.5,
@@ -547,10 +541,15 @@
       "ctl": 73.6,
       "atl": 76.6,
       "tsb": -3.1
+    },
+    {
+      "date": "2026-02-21",
+      "ctl": 77.2,
+      "atl": 95.5,
+      "tsb": -18.2
     }
   ],
   "daily_tss": {
-    "2026-01-06": 101.6,
     "2026-01-07": 111.80000000000001,
     "2026-01-08": 109.9,
     "2026-01-09": 46.4,
@@ -591,9 +590,28 @@
     "2026-02-17": 87.80000000000001,
     "2026-02-18": 7.8,
     "2026-02-19": 49.6,
-    "2026-02-20": 116.60000000000001
+    "2026-02-20": 116.60000000000001,
+    "2026-02-21": 152.0
   },
   "activities": [
+    {
+      "sport": "Ciclismo",
+      "start_time": "2026-02-21T11:17:47",
+      "duration": 7400,
+      "distance": 75.1,
+      "calories": 1723,
+      "avg_hr": 125,
+      "max_hr": 146,
+      "avg_power": 215,
+      "max_power": 328,
+      "normalized_power": null,
+      "tss": 152.0,
+      "elevation_gain": 0,
+      "avg_cadence": 83,
+      "avg_speed": 10.44,
+      "tssType": "TSS",
+      "id": "21937907763"
+    },
     {
       "sport": "Nuoto",
       "start_time": "2026-02-20T11:24:02",
@@ -2317,22 +2335,6 @@
       "elevation_gain": 0,
       "avg_cadence": 30,
       "id": "21175296904"
-    },
-    {
-      "sport": "running",
-      "start_time": "2025-12-05T05:09:36",
-      "duration": 2867,
-      "distance": 9.72,
-      "calories": 749,
-      "avg_hr": 139,
-      "max_hr": 147,
-      "avg_power": 392,
-      "max_power": 515,
-      "normalized_power": 393,
-      "tss": 2.0,
-      "elevation_gain": 19,
-      "avg_cadence": 84,
-      "id": "21173069251"
     }
   ]
 }
