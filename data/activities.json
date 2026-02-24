@@ -1,7 +1,25 @@
 {
-  "exportDate": "2026-02-24T06:05:01.373064",
-  "count": 576,
+  "exportDate": "2026-02-24T14:18:48.447329",
+  "count": 577,
   "activities": [
+    {
+      "id": "21968666249",
+      "sport": "Allenamento",
+      "startTime": "2026-02-24T11:29:52",
+      "duration": 2906,
+      "distance": 0,
+      "avgHR": 75,
+      "maxHR": 105,
+      "avgPower": null,
+      "normalizedPower": null,
+      "avgSpeed": null,
+      "calories": 178,
+      "laps": [],
+      "tss": 16.7,
+      "tssType": "hrTSS",
+      "IF": null,
+      "filename": "21968666249.fit"
+    },
     {
       "id": "21947724245",
       "sport": "Corsa",
