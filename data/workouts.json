@@ -1,25 +1,13 @@
 {
-  "last_updated": "2026-03-01T05:57:19.801782",
-  "total_activities": 582,
+  "last_updated": "2026-03-01T13:45:33.524387",
+  "total_activities": 583,
   "performance": {
-    "ctl": 68.8,
-    "atl": 46.9,
-    "tsb": 21.9,
+    "ctl": 66.4,
+    "atl": 47.0,
+    "tsb": 19.4,
     "form": "Fresh"
   },
   "history": [
-    {
-      "date": "2025-11-30",
-      "ctl": 102.7,
-      "atl": 129.9,
-      "tsb": -27.2
-    },
-    {
-      "date": "2025-12-01",
-      "ctl": 100.2,
-      "atl": 110.0,
-      "tsb": -9.7
-    },
     {
       "date": "2025-12-02",
       "ctl": 99.4,
@@ -547,10 +535,21 @@
       "ctl": 68.8,
       "atl": 46.9,
       "tsb": 21.9
+    },
+    {
+      "date": "2026-02-28",
+      "ctl": 65.6,
+      "atl": 35.1,
+      "tsb": 30.4
+    },
+    {
+      "date": "2026-03-01",
+      "ctl": 66.4,
+      "atl": 47.0,
+      "tsb": 19.4
     }
   ],
   "daily_tss": {
-    "2026-01-12": 39.4,
     "2026-01-13": 70.5,
     "2026-01-14": 125.7,
     "2026-01-15": 70.6,
@@ -591,9 +590,28 @@
     "2026-02-24": 66.2,
     "2026-02-25": 6.8,
     "2026-02-26": 62.099999999999994,
-    "2026-02-27": 17.4
+    "2026-02-27": 17.4,
+    "2026-03-01": 82.5
   },
   "activities": [
+    {
+      "sport": "Corsa",
+      "start_time": "2026-03-01T11:01:03",
+      "duration": 3270,
+      "distance": 11.54,
+      "calories": 871,
+      "avg_hr": 137,
+      "max_hr": 147,
+      "avg_power": 426,
+      "max_power": 550,
+      "normalized_power": 428,
+      "tss": 82.5,
+      "elevation_gain": 18,
+      "avg_cadence": 85,
+      "avg_speed": 3.529051987767584,
+      "tssType": "rTSS",
+      "id": "22023954965"
+    },
     {
       "sport": "Nuoto",
       "start_time": "2026-02-27T11:22:46",
@@ -2333,22 +2351,6 @@
       "elevation_gain": 0,
       "avg_cadence": null,
       "id": "21228578722"
-    },
-    {
-      "sport": "cycling",
-      "start_time": "2025-12-11T05:06:47",
-      "duration": 3376,
-      "distance": 34.11,
-      "calories": 821,
-      "avg_hr": 133,
-      "max_hr": 153,
-      "avg_power": 232,
-      "max_power": 321,
-      "normalized_power": null,
-      "tss": 0.8,
-      "elevation_gain": 0,
-      "avg_cadence": 64,
-      "id": "21226252484"
     }
   ]
 }
