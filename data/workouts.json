@@ -1,19 +1,13 @@
 {
-  "last_updated": "2026-03-02T05:58:34.205637",
-  "total_activities": 583,
+  "last_updated": "2026-03-02T14:07:05.914856",
+  "total_activities": 586,
   "performance": {
-    "ctl": 66.5,
-    "atl": 47.0,
-    "tsb": 19.5,
-    "form": "Fresh"
+    "ctl": 71.9,
+    "atl": 68.3,
+    "tsb": 3.5,
+    "form": "Optimal"
   },
   "history": [
-    {
-      "date": "2025-12-02",
-      "ctl": 99.4,
-      "atl": 103.2,
-      "tsb": -3.8
-    },
     {
       "date": "2025-12-03",
       "ctl": 100.2,
@@ -532,26 +526,30 @@
     },
     {
       "date": "2026-02-27",
-      "ctl": 68.9,
-      "atl": 46.9,
-      "tsb": 22.0
+      "ctl": 71.1,
+      "atl": 59.1,
+      "tsb": 12.1
     },
     {
       "date": "2026-02-28",
-      "ctl": 65.7,
-      "atl": 35.1,
-      "tsb": 30.5
+      "ctl": 71.7,
+      "atl": 65.1,
+      "tsb": 6.6
     },
     {
       "date": "2026-03-01",
-      "ctl": 66.5,
-      "atl": 47.0,
-      "tsb": 19.5
+      "ctl": 72.2,
+      "atl": 69.5,
+      "tsb": 2.7
+    },
+    {
+      "date": "2026-03-02",
+      "ctl": 71.9,
+      "atl": 68.3,
+      "tsb": 3.5
     }
   ],
   "daily_tss": {
-    "2026-01-13": 70.5,
-    "2026-01-14": 125.7,
     "2026-01-15": 70.6,
     "2026-01-16": 61.8,
     "2026-01-17": 105.5,
@@ -590,10 +588,30 @@
     "2026-02-24": 66.2,
     "2026-02-25": 6.8,
     "2026-02-26": 62.099999999999994,
-    "2026-02-27": 17.4,
-    "2026-03-01": 82.5
+    "2026-02-27": 66.19999999999999,
+    "2026-02-28": 83.3,
+    "2026-03-01": 82.5,
+    "2026-03-02": 64.9
   },
   "activities": [
+    {
+      "sport": "Nuoto",
+      "start_time": "2026-03-02T11:31:14",
+      "duration": 2654,
+      "distance": 2.12,
+      "calories": 414,
+      "avg_hr": 112,
+      "max_hr": 137,
+      "avg_power": null,
+      "max_power": null,
+      "normalized_power": null,
+      "tss": 64.9,
+      "elevation_gain": 0,
+      "avg_cadence": 28,
+      "avg_speed": 0.79879427279578,
+      "tssType": "sTSS",
+      "id": "22034510805"
+    },
     {
       "sport": "Corsa",
       "start_time": "2026-03-01T11:01:03",
@@ -613,6 +631,24 @@
       "id": "22023954965"
     },
     {
+      "sport": "Ciclismo",
+      "start_time": "2026-02-28T11:02:36",
+      "duration": 4730,
+      "distance": 41.38,
+      "calories": 944,
+      "avg_hr": 130,
+      "max_hr": 169,
+      "avg_power": 199,
+      "max_power": 400,
+      "normalized_power": null,
+      "tss": 83.3,
+      "elevation_gain": 75,
+      "avg_cadence": 81,
+      "avg_speed": 8.748,
+      "tssType": "TSS",
+      "id": "22032178239"
+    },
+    {
       "sport": "Nuoto",
       "start_time": "2026-02-27T11:22:46",
       "duration": 3206,
@@ -629,6 +665,24 @@
       "avg_speed": 0.48346849656893326,
       "tssType": "sTSS",
       "id": "22002201963"
+    },
+    {
+      "sport": "Ciclismo",
+      "start_time": "2026-02-27T05:09:47",
+      "duration": 2664,
+      "distance": 13.53,
+      "calories": 542,
+      "avg_hr": 121,
+      "max_hr": 142,
+      "avg_power": 203,
+      "max_power": 336,
+      "normalized_power": null,
+      "tss": 48.8,
+      "elevation_gain": 393,
+      "avg_cadence": 87,
+      "avg_speed": 5.078,
+      "tssType": "TSS",
+      "id": "22032178211"
     },
     {
       "sport": "Corsa",
@@ -2303,54 +2357,6 @@
       "elevation_gain": 0,
       "avg_cadence": 83,
       "id": "21245634517"
-    },
-    {
-      "sport": "swimming",
-      "start_time": "2025-12-12T14:32:44",
-      "duration": 3158,
-      "distance": 2.38,
-      "calories": 539,
-      "avg_hr": 119,
-      "max_hr": 147,
-      "avg_power": null,
-      "max_power": null,
-      "normalized_power": null,
-      "tss": 45.6,
-      "elevation_gain": 0,
-      "avg_cadence": 29,
-      "id": "21238640453"
-    },
-    {
-      "sport": "running",
-      "start_time": "2025-12-12T08:17:42",
-      "duration": 3348,
-      "distance": 11.06,
-      "calories": 866,
-      "avg_hr": 138,
-      "max_hr": 149,
-      "avg_power": 392,
-      "max_power": 510,
-      "normalized_power": 393,
-      "tss": 2.3,
-      "elevation_gain": 17,
-      "avg_cadence": 83,
-      "id": "21235903061"
-    },
-    {
-      "sport": "training",
-      "start_time": "2025-12-11T11:20:22",
-      "duration": 3289,
-      "distance": 0,
-      "calories": 284,
-      "avg_hr": 86,
-      "max_hr": 115,
-      "avg_power": null,
-      "max_power": null,
-      "normalized_power": null,
-      "tss": 24.8,
-      "elevation_gain": 0,
-      "avg_cadence": null,
-      "id": "21228578722"
     }
   ]
 }
