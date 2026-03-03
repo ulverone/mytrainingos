@@ -1,5 +1,5 @@
 {
-  "exportDate": "2026-03-02T14:07:05.918245",
+  "exportDate": "2026-03-03T05:53:41.993826",
   "count": 586,
   "activities": [
     {
@@ -1804,7 +1804,7 @@
     },
     {
       "id": "21238640453",
-      "sport": "swimming",
+      "sport": "Nuoto",
       "startTime": "2025-12-12T14:32:44",
       "duration": 3158,
       "distance": 2380.0,
@@ -1812,17 +1812,17 @@
       "maxHR": 147,
       "avgPower": null,
       "normalizedPower": null,
-      "avgSpeed": null,
+      "avgSpeed": 0.7536415452818239,
       "calories": 539,
       "laps": [],
-      "tss": 45.6,
-      "tssType": "TSS",
+      "tss": 64.9,
+      "tssType": "sTSS",
       "IF": null,
       "filename": "21238640453.fit"
     },
     {
       "id": "21235903061",
-      "sport": "running",
+      "sport": "Corsa",
       "startTime": "2025-12-12T08:17:42",
       "duration": 3348,
       "distance": 11060.0,
@@ -1830,17 +1830,17 @@
       "maxHR": 149,
       "avgPower": 392,
       "normalizedPower": 393,
-      "avgSpeed": null,
+      "avgSpeed": 3.303464755077658,
       "calories": 866,
       "laps": [],
-      "tss": 2.3,
-      "tssType": "TSS",
-      "IF": 1.57,
+      "tss": 74.0,
+      "tssType": "rTSS",
+      "IF": 1.03,
       "filename": "21235903061.fit"
     },
     {
       "id": "21228578722",
-      "sport": "training",
+      "sport": "Allenamento",
       "startTime": "2025-12-11T11:20:22",
       "duration": 3289,
       "distance": 0,
@@ -1852,7 +1852,7 @@
       "calories": 284,
       "laps": [],
       "tss": 24.8,
-      "tssType": "TSS",
+      "tssType": "hrTSS",
       "IF": null,
       "filename": "21228578722.fit"
     },
