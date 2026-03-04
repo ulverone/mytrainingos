@@ -1,19 +1,13 @@
 {
-  "last_updated": "2026-03-04T05:48:51.684006",
-  "total_activities": 588,
+  "last_updated": "2026-03-04T14:03:37.276390",
+  "total_activities": 589,
   "performance": {
-    "ctl": 73.8,
-    "atl": 78.9,
-    "tsb": -5.1,
+    "ctl": 74.2,
+    "atl": 79.5,
+    "tsb": -5.3,
     "form": "Optimal"
   },
   "history": [
-    {
-      "date": "2025-12-04",
-      "ctl": 100.3,
-      "atl": 105.4,
-      "tsb": -5.1
-    },
     {
       "date": "2025-12-05",
       "ctl": 101.4,
@@ -547,10 +541,15 @@
       "ctl": 73.8,
       "atl": 78.9,
       "tsb": -5.1
+    },
+    {
+      "date": "2026-03-04",
+      "ctl": 74.2,
+      "atl": 79.5,
+      "tsb": -5.3
     }
   ],
   "daily_tss": {
-    "2026-01-16": 61.8,
     "2026-01-17": 105.5,
     "2026-01-18": 84.0,
     "2026-01-19": 50.7,
@@ -591,9 +590,28 @@
     "2026-02-28": 83.3,
     "2026-03-01": 82.5,
     "2026-03-02": 64.9,
-    "2026-03-03": 110.8
+    "2026-03-03": 110.8,
+    "2026-03-04": 81.0
   },
   "activities": [
+    {
+      "sport": "Nuoto",
+      "start_time": "2026-03-04T11:24:37",
+      "duration": 3042,
+      "distance": 2.5,
+      "calories": 564,
+      "avg_hr": 121,
+      "max_hr": 160,
+      "avg_power": null,
+      "max_power": null,
+      "normalized_power": null,
+      "tss": 81.0,
+      "elevation_gain": 0,
+      "avg_cadence": 30,
+      "avg_speed": 0.821827744904668,
+      "tssType": "sTSS",
+      "id": "22057736672"
+    },
     {
       "sport": "Allenamento",
       "start_time": "2026-03-03T11:24:51",
@@ -2345,22 +2363,6 @@
       "elevation_gain": 0,
       "avg_cadence": null,
       "id": "21271442418"
-    },
-    {
-      "sport": "cycling",
-      "start_time": "2025-12-16T05:08:19",
-      "duration": 3119,
-      "distance": 31.81,
-      "calories": 743,
-      "avg_hr": 129,
-      "max_hr": 154,
-      "avg_power": 219,
-      "max_power": 313,
-      "normalized_power": null,
-      "tss": 0.7,
-      "elevation_gain": 0,
-      "avg_cadence": 80,
-      "id": "21268989861"
     }
   ]
 }
