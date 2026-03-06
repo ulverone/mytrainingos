@@ -1,5 +1,5 @@
 {
-  "exportDate": "2026-03-05T14:08:37.315616",
+  "exportDate": "2026-03-06T05:50:21.508156",
   "count": 591,
   "activities": [
     {
@@ -1804,7 +1804,7 @@
     },
     {
       "id": "21278144324",
-      "sport": "running",
+      "sport": "Corsa",
       "startTime": "2025-12-17T05:08:43",
       "duration": 3489,
       "distance": 11590.0,
@@ -1812,17 +1812,17 @@
       "maxHR": 155,
       "avgPower": 400,
       "normalizedPower": 404,
-      "avgSpeed": null,
+      "avgSpeed": 3.3218687302952135,
       "calories": 888,
       "laps": [],
-      "tss": 2.5,
-      "tssType": "TSS",
-      "IF": 1.62,
+      "tss": 78.0,
+      "tssType": "rTSS",
+      "IF": 1.06,
       "filename": "21278144324.fit"
     },
     {
       "id": "21271442418",
-      "sport": "training",
+      "sport": "Allenamento",
       "startTime": "2025-12-16T11:25:09",
       "duration": 3177,
       "distance": 0,
@@ -1834,7 +1834,7 @@
       "calories": 222,
       "laps": [],
       "tss": 19.7,
-      "tssType": "TSS",
+      "tssType": "hrTSS",
       "IF": null,
       "filename": "21271442418.fit"
     },
