@@ -1,10 +1,10 @@
 {
-  "last_updated": "2026-03-07T13:45:15.101366",
-  "total_activities": 592,
+  "last_updated": "2026-03-08T05:49:15.891288",
+  "total_activities": 593,
   "performance": {
-    "ctl": 73.8,
-    "atl": 74.9,
-    "tsb": -1.0,
+    "ctl": 75.7,
+    "atl": 84.8,
+    "tsb": -9.1,
     "form": "Optimal"
   },
   "history": [
@@ -544,9 +544,9 @@
     },
     {
       "date": "2026-03-06",
-      "ctl": 73.8,
-      "atl": 74.9,
-      "tsb": -1.0
+      "ctl": 75.7,
+      "atl": 84.8,
+      "tsb": -9.1
     }
   ],
   "daily_tss": {
@@ -591,9 +591,27 @@
     "2026-03-03": 110.8,
     "2026-03-04": 81.0,
     "2026-03-05": 65.3,
-    "2026-03-06": 71.7
+    "2026-03-06": 111.5
   },
   "activities": [
+    {
+      "sport": "Nuoto",
+      "start_time": "2026-03-06T11:25:55",
+      "duration": 3105,
+      "distance": 2.0,
+      "calories": 446,
+      "avg_hr": 116,
+      "max_hr": 152,
+      "avg_power": null,
+      "max_power": null,
+      "normalized_power": null,
+      "tss": 39.8,
+      "elevation_gain": 0,
+      "avg_cadence": 30,
+      "avg_speed": 0.644122383252818,
+      "tssType": "sTSS",
+      "id": "22095449345"
+    },
     {
       "sport": "Ciclismo",
       "start_time": "2026-03-06T05:05:18",
@@ -2353,22 +2371,6 @@
       "elevation_gain": 0,
       "avg_cadence": 29,
       "id": "21297355529"
-    },
-    {
-      "sport": "training",
-      "start_time": "2025-12-18T11:20:06",
-      "duration": 3558,
-      "distance": 0,
-      "calories": 214,
-      "avg_hr": 76,
-      "max_hr": 111,
-      "avg_power": null,
-      "max_power": null,
-      "normalized_power": null,
-      "tss": 21.0,
-      "elevation_gain": 0,
-      "avg_cadence": null,
-      "id": "21289232986"
     }
   ]
 }
