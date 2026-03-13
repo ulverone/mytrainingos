@@ -1,5 +1,5 @@
 {
-  "exportDate": "2026-03-12T14:09:38.107882",
+  "exportDate": "2026-03-13T05:53:18.283864",
   "count": 600,
   "activities": [
     {
@@ -1804,7 +1804,7 @@
     },
     {
       "id": "21339701691",
-      "sport": "running",
+      "sport": "Corsa",
       "startTime": "2025-12-24T11:26:07",
       "duration": 3219,
       "distance": 10010.0,
@@ -1812,17 +1812,17 @@
       "maxHR": 143,
       "avgPower": 406,
       "normalizedPower": 409,
-      "avgSpeed": null,
+      "avgSpeed": 3.1096613855234545,
       "calories": 745,
       "laps": [],
-      "tss": 2.4,
-      "tssType": "TSS",
-      "IF": 1.64,
+      "tss": 63.0,
+      "tssType": "rTSS",
+      "IF": 1.08,
       "filename": "21339701691.fit"
     },
     {
       "id": "21331084721",
-      "sport": "training",
+      "sport": "Allenamento",
       "startTime": "2025-12-23T11:37:09",
       "duration": 3456,
       "distance": 0,
@@ -1834,13 +1834,13 @@
       "calories": 251,
       "laps": [],
       "tss": 22.0,
-      "tssType": "TSS",
+      "tssType": "hrTSS",
       "IF": null,
       "filename": "21331084721.fit"
     },
     {
       "id": "21328798551",
-      "sport": "cycling",
+      "sport": "Ciclismo",
       "startTime": "2025-12-23T06:37:28",
       "duration": 2903,
       "distance": 23680.0,
@@ -1848,10 +1848,10 @@
       "maxHR": 164,
       "avgPower": 239,
       "normalizedPower": null,
-      "avgSpeed": null,
+      "avgSpeed": 8.751,
       "calories": 713,
       "laps": [],
-      "tss": 0.7,
+      "tss": 73.7,
       "tssType": "TSS",
       "IF": 0.96,
       "filename": "21328798551.fit"
