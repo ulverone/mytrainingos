@@ -1,19 +1,13 @@
 {
-  "last_updated": "2026-03-15T06:12:23.195371",
-  "total_activities": 602,
+  "last_updated": "2026-03-15T13:52:44.191514",
+  "total_activities": 603,
   "performance": {
-    "ctl": 81.5,
-    "atl": 97.9,
-    "tsb": -16.3,
+    "ctl": 84.3,
+    "atl": 108.7,
+    "tsb": -24.4,
     "form": "Fatigued"
   },
   "history": [
-    {
-      "date": "2025-12-15",
-      "ctl": 95.8,
-      "atl": 65.3,
-      "tsb": 30.4
-    },
     {
       "date": "2025-12-16",
       "ctl": 95.3,
@@ -547,10 +541,15 @@
       "ctl": 81.5,
       "atl": 97.9,
       "tsb": -16.3
+    },
+    {
+      "date": "2026-03-15",
+      "ctl": 84.3,
+      "atl": 108.7,
+      "tsb": -24.4
     }
   ],
   "daily_tss": {
-    "2026-01-27": 91.0,
     "2026-01-28": 75.4,
     "2026-01-30": 79.1,
     "2026-01-31": 127.3,
@@ -591,9 +590,28 @@
     "2026-03-11": 68.0,
     "2026-03-12": 69.1,
     "2026-03-13": 82.4,
-    "2026-03-14": 158.5
+    "2026-03-14": 158.5,
+    "2026-03-15": 141.1
   },
   "activities": [
+    {
+      "sport": "Corsa",
+      "start_time": "2026-03-15T09:41:25",
+      "duration": 6385,
+      "distance": 21.09,
+      "calories": 1625,
+      "avg_hr": 135,
+      "max_hr": 149,
+      "avg_power": 390,
+      "max_power": 544,
+      "normalized_power": 402,
+      "tss": 141.1,
+      "elevation_gain": 54,
+      "avg_cadence": 82,
+      "avg_speed": 3.3030540328895848,
+      "tssType": "rTSS",
+      "id": "22180320991"
+    },
     {
       "sport": "Ciclismo",
       "start_time": "2026-03-14T09:59:25",
@@ -2372,22 +2390,6 @@
       "elevation_gain": 0,
       "avg_cadence": 81,
       "id": "21367094109"
-    },
-    {
-      "sport": "walking",
-      "start_time": "2025-12-27T09:42:35",
-      "duration": 10260,
-      "distance": 10.66,
-      "calories": 718,
-      "avg_hr": 71,
-      "max_hr": 103,
-      "avg_power": null,
-      "max_power": null,
-      "normalized_power": null,
-      "tss": 52.8,
-      "elevation_gain": 40,
-      "avg_cadence": 45,
-      "id": "21363687377"
     }
   ]
 }
