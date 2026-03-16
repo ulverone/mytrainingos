@@ -1,5 +1,5 @@
 {
-  "exportDate": "2026-03-15T13:52:44.195112",
+  "exportDate": "2026-03-16T06:27:07.434328",
   "count": 603,
   "activities": [
     {
@@ -1804,7 +1804,7 @@
     },
     {
       "id": "21363687377",
-      "sport": "walking",
+      "sport": "Camminata",
       "startTime": "2025-12-27T09:42:35",
       "duration": 10260,
       "distance": 10660.0,
@@ -1812,11 +1812,11 @@
       "maxHR": 103,
       "avgPower": null,
       "normalizedPower": null,
-      "avgSpeed": null,
+      "avgSpeed": 1.0389863547758285,
       "calories": 718,
       "laps": [],
-      "tss": 52.8,
-      "tssType": "TSS",
+      "tss": 22.4,
+      "tssType": "rTSS",
       "IF": null,
       "filename": "21363687377.fit"
     },
